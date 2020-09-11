@@ -6,20 +6,79 @@
   <title>Hello, World! - A-Frame</title>
   <meta name="description" content="Hello, World! - A-Frame">
   <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  <script type="text/javascript" src=https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js></script>
+  <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v2.6.1/dist/aframe-extras.min.js"></script>
+
 </head>
 
 <body>
   <a-scene>
+    <a-assets>
+      <img id="texture-floor" src="./assets/images/floor.jpg">
+      <img id="texture-wall" src="./assets/images/wall.jpg">
+    </a-assets>
     <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
     <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
     <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+    <a-light position="1 1 -10" radius="0.5" height="1.5" color="#FFC65D"></a-light>
     <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
-    <a-sky color="#ECECEC"></a-sky>
-    <a-camera>
-      <a-cursor id="cursor" animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click" animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
-        animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing"></a-cursor>
-    </a-camera>
+    <a-sky color="#255555"></a-sky>
+    <a-entity camera universal-controls kinematic-body look-controls wasd-controls="acceleration:100" position="0 1.6 0">
+      <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02" material="color: white; shader: flat">
+      </a-entity>
+    </a-entity>
+    <a-entity id="walls" dynamic-body></a-entity>
+    <a-grid id="ground" static-body material="src: #texture-floor"></a-grid>
   </a-scene>
+
+
+  <script type="text/javascript">
+    AFRAME.registerComponent('pointlight', {
+      init: function() {
+        this.el.setObject3D('light', new THREE.PointLight());
+      }
+    });
+    var map = {
+      "data": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0,
+        0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+      ],
+      "height": 10,
+      "width": 10
+    }
+    document.querySelector('a-scene').addEventListener('render-target-loaded', function() {
+      var WALL_SIZE = 5,
+        WALL_HEIGHT = 3;
+      var el = document.querySelector('#walls');
+      var wall;
+
+      for (var x = 0; x < map.height; x++) {
+        for (var y = 0; y < map.width; y++) {
+
+          var i = y * map.width + x;
+          var position = (x - map.width / 2) * WALL_SIZE + ' ' + 1.5 + ' ' + (y - map.height / 2) * WALL_SIZE;
+          if (map.data[i] === 1) {
+            // Create wall
+            wall = document.createElement('a-box');
+            el.appendChild(wall);
+            wall.setAttribute('color', '#fff');
+            wall.setAttribute('material', 'src: #texture-wall;');
+            wall.setAttribute('width', WALL_SIZE);
+            wall.setAttribute('height', WALL_HEIGHT);
+            wall.setAttribute('depth', WALL_SIZE);
+            wall.setAttribute('position', position);
+            wall.setAttribute('static-body', '');
+          }
+
+          // if (map.data[i] === 2) {
+          //   // Set player position
+          //   document.querySelector('#player').setAttribute('position', position);
+          // }
+
+        }
+      }
+      console.info('Walls added.');
+    });
+  </script>
 </body>
 
 </html>
