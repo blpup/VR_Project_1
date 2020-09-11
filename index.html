@@ -34,6 +34,7 @@
 
 
   <script type="text/javascript">
+  console.log('inx')
     AFRAME.registerComponent('pointlight', {
       init: function() {
         this.el.setObject3D('light', new THREE.PointLight());
@@ -46,7 +47,8 @@
       "height": 10,
       "width": 10
     }
-    document.querySelector('a-scene').addEventListener('render-target-loaded', function() {
+    document.querySelector('a-scene').addEventListener('loaded', function() {
+      console.log('in')
       var WALL_SIZE = 5,
         WALL_HEIGHT = 3;
       var el = document.querySelector('#walls');
