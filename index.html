@@ -22,7 +22,7 @@
     <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
     <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
     <!-- <a-light position="1 1 -10" radius="0.5" height="1.5" color="#FFC65D"></a-light> -->
-    <a-plane position="10 2 0" rotation="-90 0 0" width="200" height="200" color="#7BC8A4"></a-plane>
+    <!-- <a-plane position="10 2 0" rotation="-90 0 0" width="200" height="200" color="#7BC8A4"></a-plane> -->
     <a-sky color="#255555"></a-sky>
     <a-entity camera look-controls="" universal-controls position="0 1.6 0">
       <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02" material="color: white; shader: flat">
@@ -30,7 +30,8 @@
     </a-entity>
     <a-entity id="walls" dynamic-body></a-entity>
     <a-grid id="ground" static-body material="src: #texture-floor"></a-grid>
-    <a-plane position="0 4 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+    <a-grid id="ground" position="0 3 0" static-body material="src: #texture-floor" rotation="90 0 0"></a-grid>
+    <!-- <a-plane position="0 4 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane> -->
   </a-scene>
 
 
