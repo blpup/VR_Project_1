@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>Hello, World! - A-Frame</title>
   <meta name="description" content="Hello, World! - A-Frame">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.0.4/aframe.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
@@ -21,34 +21,41 @@
     <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
     <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
     <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-    <a-light position="1 1 -10" radius="0.5" height="1.5" color="#FFC65D"></a-light>
-    <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+    <!-- <a-light position="1 1 -10" radius="0.5" height="1.5" color="#FFC65D"></a-light> -->
+    <a-plane position="10 2 0" rotation="-90 0 0" width="200" height="200" color="#7BC8A4"></a-plane>
     <a-sky color="#255555"></a-sky>
-    <a-entity camera look-controls="" wasd-controls="" position="0 1.6 0">
+    <a-entity camera look-controls="" universal-controls position="0 1.6 0">
       <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02" material="color: white; shader: flat">
       </a-entity>
     </a-entity>
     <a-entity id="walls" dynamic-body></a-entity>
     <a-grid id="ground" static-body material="src: #texture-floor"></a-grid>
+    <a-plane position="0 4 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
   </a-scene>
 
 
   <script type="text/javascript">
-  console.log('inx')
     AFRAME.registerComponent('pointlight', {
       init: function() {
         this.el.setObject3D('light', new THREE.PointLight());
       }
     });
     var map = {
-      "data": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0,
-        0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+      "data": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+               1, 0, 0, 0, 0, 0, 0, 0, 2, 1,
+               1, 1, 1, 1, 1, 1, 1, 1, 1, 1
       ],
       "height": 10,
       "width": 10
     }
     document.querySelector('a-scene').addEventListener('loaded', function() {
-      console.log('in')
       var WALL_SIZE = 5,
         WALL_HEIGHT = 3;
       var el = document.querySelector('#walls');
