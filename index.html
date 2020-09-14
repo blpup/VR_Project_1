@@ -9,7 +9,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.0.4/aframe.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-
+  <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
 </head>
 
 <body>
@@ -24,14 +24,16 @@
     <!-- <a-light position="1 1 -10" radius="0.5" height="1.5" color="#FFC65D"></a-light> -->
     <!-- <a-plane position="10 2 0" rotation="-90 0 0" width="200" height="200" color="#7BC8A4"></a-plane> -->
     <a-sky color="#255555"></a-sky>
-    <a-entity camera look-controls="" universal-controls position="0 1.6 0">
+    <a-entity camera look-controls="" universal-controls position="0 1.6 0" id="player">
       <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02" material="color: white; shader: flat">
+        <a-animation begin="click" easing="ease-in" attribute="scale" dur="150" fill="forwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+        <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500" fill="backwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
       </a-entity>
     </a-entity>
     <a-entity id="walls" dynamic-body></a-entity>
     <a-grid id="ground" static-body material="src: #texture-floor"></a-grid>
     <a-grid id="ground" position="0 3 0" static-body material="src: #texture-floor" rotation="90 0 0"></a-grid>
-    <a-plane position="10 .1 0" rotation="-90 0 0" width=".5" height=".5" color="#7BC8A4"></a-plane>
+    <a-plane position="10 .1 0" rotation="-90 0 0" width=".5" height=".5" color="#7BC8A4" onclick="movePlayer('10 1.6 0')"></a-plane>
   </a-scene>
 
 
@@ -43,15 +45,15 @@
     });
     var map = {
       "data": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-               1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-               1, 0, 0, 0, 0, 0, 0, 0, 2, 1,
-               1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 2, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1
       ],
       "height": 10,
       "width": 10
@@ -60,6 +62,7 @@
       var WALL_SIZE = 5,
         WALL_HEIGHT = 3;
       var el = document.querySelector('#walls');
+      var player = document.querySelector('#player');
       var wall;
 
       for (var x = 0; x < map.height; x++) {
@@ -89,6 +92,9 @@
       }
       console.info('Walls added.');
     });
+    function movePlayer(position) {
+      player.setAttribute("position", position);
+    }
   </script>
 </body>
 
