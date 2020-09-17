@@ -7,7 +7,7 @@
   <meta name="description" content="Hello, World! - A-Frame">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.0.4/aframe.min.js"></script>
-
+  <script src="https://unpkg.com/aframe-animation-component@5.1.2/dist/aframe-animation-component.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
   <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
 </head>
@@ -17,11 +17,8 @@
     <a-assets>
       <img id="texture-floor" src="./assets/images/floor.jpg">
       <img id="texture-wall" src="./assets/images/wall.jpg">
-      <a-asset-item id="OrangeBOT-obj" src="./assets/models/OrangeBot_OBJ/OrangeBOT.obj"></a-asset-item>
-      <a-asset-item id="OrangeBOT-mtl" src="./assets/models/OrangeBot_OBJ/OrangeBOT.mtl"></a-asset-item>
       <a-asset-item id="hazard" src="./assets/models/hazard_suit/scene.gltf"></a-asset-item>
       <a-asset-item id="hazmat" src="./assets/models/hazmat_suit/scene.gltf"></a-asset-item>
-      <a-asset-item id="chair1" src="./assets/models/chairs/chair1/scene.gltf"></a-asset-item>
       <a-asset-item id="television" src="./assets/models/television/scene.gltf"></a-asset-item>
       <a-asset-item id="carpet" src="./assets/models/carpet/scene.gltf"></a-asset-item>
       <a-asset-item id="lamp1" src="./assets/models/lamp/scene.gltf"></a-asset-item>
@@ -29,15 +26,13 @@
       <a-asset-item id="stove" src="./assets/models/stove/scene.gltf"></a-asset-item>
       <a-asset-item id="klamp" src="./assets/models/kitchenLamp/scene.gltf"></a-asset-item>
     </a-assets>
-    <!-- <a-entity obj-model="obj: #OrangeBOT-obj; mtl: #OrangeBOT-mtl" position="0 1.5 -5" scale=".5 .5 .5"></a-entity> -->
-    <a-gltf-model position="0 0 -15"src="#chair1" ></a-gltf-model>
     <a-gltf-model position="0 0.860 -10" scale=".05 .05 .05"src="#television" ></a-gltf-model>
     <a-gltf-model position="-2.800 .1 -9.6" scale=".03 .03 .03"src="#lamp1" ></a-gltf-model>
     <a-gltf-model position="2.800 .1 -9.6" scale=".03 .03 .03"src="#lamp2" ></a-gltf-model>
     <a-gltf-model position="0 .6 9.66" scale=".03 .03 .03"src="#stove" rotation="0 90 0" ></a-gltf-model>
     <a-gltf-model position="0 2 9.3" scale=".01 .01 .01"src="#klamp" rotation="0 0 0" ></a-gltf-model>
     <!-- <a-light position="1 1 -10" radius="0.5" height="1.5" color="#FFC65D"></a-light> -->
-    <!-- <a-plane position="10 2 0" rotation="-90 0 0" width="200" height="200" color="#7BC8A4"></a-plane> -->
+
     <a-sky color="#255555"></a-sky>
     <a-entity camera look-controls="" universal-controls position="0 1.6 0" id="player">
       <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02" material="color: white; shader: flat">
@@ -55,10 +50,6 @@
     <a-gltf-model position="-8 .1 0" scale="3 1 3" rotation="0 90 0" src="#carpet" onclick="movePlayer('-8 1.6 0')"></a-gltf-model>
     <a-gltf-model position="0 .1 8" scale="3 1 3" src="#carpet" onclick="movePlayer('0 1.6 8')"></a-gltf-model>
     <a-gltf-model position="0 .1 0" scale="3 1 3" src="#carpet" onclick="movePlayer('0 1.6 0')"></a-gltf-model>
-    <!-- <a-plane position="10 .1 0" rotation="-90 0 0" width="3" height="3" color="#7BC8A4" onclick="movePlayer('10 1.6 0')"></a-plane>
-    <a-plane position="-15 .1 0" rotation="-90 0 0" width="3" height="3" color="#7BC8A4" onclick="movePlayer('-15 1.6 0')"></a-plane>
-    <a-plane position="0 .1 10" rotation="-90 0 0" width="3" height="3" color="#7BC8A4" onclick="movePlayer('0 1.6 10')"></a-plane>
-    <a-plane position="0 .1 0" rotation="-90 0 0" width="3" height="3" color="#7BC8A4" onclick="movePlayer('0 1.6 0')"></a-plane> -->
   </a-scene>
 
 
