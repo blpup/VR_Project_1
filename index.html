@@ -40,7 +40,7 @@
       </a-entity>
       <!-- <a-entity cursor=" rayOrigin: mouse" geometry="primitive: ring; radiusInner: 0; radiusOuter: 0" material="color: black; shader: flat"></a-entity> -->
 
-      <a-entity raycaster="showLine:true; far: 1000;" line="color:orange; opacity:1"></a-entity>
+      <a-entity raycaster="showLine:false; far: 1000;" line="color:orange; opacity:1"></a-entity>
     </a-entity>
     <a-entity id="walls" dynamic-body></a-entity>
     <a-entity pointlight></a-entity>
@@ -67,6 +67,7 @@
       init: function() {
         this.el.addEventListener("raycaster-intersected", evt => {
           this.intersectingRaycaster = evt.detail.el.components.raycaster;
+          print('in')
           this.el.click();
         });
         this.el.addEventListener("raycaster-intersected-cleared", () => {
