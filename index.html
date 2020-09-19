@@ -67,7 +67,7 @@
       init: function() {
         this.el.addEventListener("raycaster-intersected", evt => {
           this.intersectingRaycaster = evt.detail.el.components.raycaster;
-          movePlayer('0 1.6 0')
+          movePlayer('0 1.6 8')
         });
         this.el.addEventListener("raycaster-intersected-cleared", () => {
           this.intersectingRaycaster = null;
