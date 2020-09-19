@@ -33,15 +33,18 @@
     <!-- <a-light position="1 1 -10" radius="0.5" height="1.5" color="#FFC65D"></a-light> -->
     <!--
     <a-sky color="#255555"></a-sky> -->
-    <a-entity universal-controls  id="player">
-      <a-camera camera position="0 1.6 0" look-controls></a-camera>
-      <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02" material="color: white; shader: flat">
-        <a-animation begin="click" easing="ease-in" attribute="scale" dur="150" fill="forwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
-        <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500" fill="backwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+    <a-entity universal-controls id="player">
+      <a-entity camera position="0 1.6 0" look-controls>
+        <a-entity cursor=" rayOrigin: mouse" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02" material="color: white; shader: flat">
+          <a-animation begin="click" easing="ease-in" attribute="scale" dur="150" fill="forwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+          <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500" fill="backwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+        </a-entity>
+        <a-entity raycaster="showLine:false; far: 1000; objects: .teleporter" line="color:orange; opacity:1"></a-entity>
+        <!-- <a-entity cursor=" rayOrigin: mouse" position="0 0 -1" geometry="primitive: ring; radiusInner: 0; radiusOuter: 0" material="color: black; shader: flat"></a-entity> -->
       </a-entity>
-      <!-- <a-entity cursor=" rayOrigin: mouse" geometry="primitive: ring; radiusInner: 0; radiusOuter: 0" material="color: black; shader: flat"></a-entity> -->
 
-      <a-entity raycaster="showLine:false; far: 1000;" line="color:orange; opacity:1"></a-entity>
+
+
     </a-entity>
     <a-entity id="walls" dynamic-body></a-entity>
     <a-entity pointlight></a-entity>
@@ -49,11 +52,11 @@
     <a-grid id="ground" position="0 3 0" static-body material="src: #texture-floor" rotation="90 0 0"></a-grid>
 
     <!-- TELEPORT PADS-->
-    <a-gltf-model position="0 .1 -8" scale="3 3 3" src="#carpet" onclick="movePlayer('0 1.6 -8')" class="collidable" collider-check></a-gltf-model>
-    <a-gltf-model position="8 .1 0" scale="3 3 3" rotation="0 90 0" src="#carpet" onclick="movePlayer('8 1.6 0')" class="collidable" collider-check></a-gltf-model>
-    <a-gltf-model position="-8 .1 0" scale="3 3 3" rotation="0 90 0" src="#carpet" onclick="movePlayer('-8 1.6 0')" class="collidable" collider-check></a-gltf-model>
-    <a-gltf-model position="0 .1 8" scale="3 3 3" src="#carpet" onclick="movePlayer('0 1.6 8')" class="collidable" collider-check></a-gltf-model>
-    <a-gltf-model position="0 .1 0" scale="3 3 3" src="#carpet" onclick="movePlayer('0 1.6 0')" class="collidable" collider-check></a-gltf-model>
+    <a-gltf-model position="0 .1 -8" scale="3 1 3" src="#carpet" onclick="movePlayer('0 0 -8')" class="teleporter" id="top-tp" collider-check></a-gltf-model>
+    <a-gltf-model position="8 .1 0" scale="3 1 3" rotation="0 90 0" src="#carpet" onclick="movePlayer('8 0 0')" id="left-tp" class="teleporter" collider-check></a-gltf-model>
+    <a-gltf-model position="-8 .1 0" scale="3 1 3" rotation="0 90 0" src="#carpet" onclick="movePlayer('-8 0 0')" id="right-tp" class="teleporter" collider-check></a-gltf-model>
+    <a-gltf-model position="0 .1 8" scale="3 1 3" src="#carpet" onclick="movePlayer('0 0 8')" class="teleporter" id="back-tp" collider-check></a-gltf-model>
+    <a-gltf-model position="0 .1 0" scale="3 1 3" src="#carpet" onclick="movePlayer('0 0 0')" class="teleporter" id="middle-tp" collider-check></a-gltf-model>
   </a-scene>
 
 
@@ -65,10 +68,40 @@
       }
     });
     AFRAME.registerComponent('collider-check', {
-      init: function() {
+      dependencies: ['raycaster'],
+      init: async function() {
         this.el.addEventListener("raycaster-intersected", evt => {
           this.intersectingRaycaster = evt.detail.el.components.raycaster;
-          movePlayer('0 1.6 8')
+          //movePlayer('0 1.6 8')
+          setTimeout(() => {
+            if (this.intersectingRaycaster != null) {
+              console.log(evt.srcElement)
+              switch (evt.srcElement.id) {
+                case "top-tp":
+                  movePlayer('0 0 -8')
+                  console.log('top')
+                  break;
+                case "left-tp":
+                  movePlayer('8 0 0')
+                  console.log('left')
+                  break;
+                case "right-tp":
+                  movePlayer('-8 0 0')
+                  console.log('right')
+                  break;
+                case "back-tp":
+                  movePlayer('0 0 8')
+                  console.log('back')
+                  break;
+                case "middle-tp":
+                  movePlayer('0 0 0')
+                  console.log('middle')
+                  break;
+                default:
+
+              }
+            }
+          }, 1500)
         });
         this.el.addEventListener("raycaster-intersected-cleared", () => {
           this.intersectingRaycaster = null;
@@ -125,7 +158,6 @@
         }
       }
       console.info('Walls added.');
-      console.log(player)
 
     });
 
