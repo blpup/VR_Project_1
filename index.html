@@ -67,7 +67,7 @@
       init: function() {
         this.el.addEventListener("raycaster-intersected", evt => {
           this.intersectingRaycaster = evt.detail.el.components.raycaster;
-          console.log(this.el.click())
+          this.el.click();
         });
         this.el.addEventListener("raycaster-intersected-cleared", () => {
           this.intersectingRaycaster = null;
