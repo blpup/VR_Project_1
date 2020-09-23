@@ -5,10 +5,8 @@
   <meta charset="utf-8">
   <title>Hello, World! - A-Frame</title>
   <meta name="description" content="Hello, World! - A-Frame">
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.0.4/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-  <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
 </head>
 
 <body>
@@ -26,6 +24,8 @@
       <a-asset-item id="books" src="./assets/models/books/scene.gltf"></a-asset-item>
       <a-asset-item id="window" src="./assets/models/window/scene.gltf"></a-asset-item>
       <a-asset-item id="plant" src="./assets/models/plant/scene.gltf"></a-asset-item>
+
+      <a-asset-item id="fan" src="./assets/models/fan/scene.gltf"></a-asset-item>
     </a-assets>
 
     <!-- Model #1  TELEVISION -->
@@ -50,7 +50,7 @@
 
 
     <!-- Model #7  GYM -->
-    <a-gltf-model position="-8.389 .103 -1.236" scale=".05 .035 .05" src="#gym"></a-gltf-model>
+    <!-- <a-gltf-model position="-8.389 .103 -1.236" scale=".05 .035 .05" src="#fan"></a-gltf-model> -->
 
     <!-- Model #8  BOOKSHELF -->
     <!-- <a-gltf-model position="4.198 .850 -9.631" scale=".05 .05 .05" src="#books"></a-gltf-model> -->
@@ -64,9 +64,9 @@
     <!-- PLAYER -->
     <a-entity universal-controls id="player">
       <a-entity camera position="0 1.6 0" look-controls>
-        <a-entity cursor=" rayOrigin: mouse" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02" material="color: white; shader: flat" animation="property:scale; dur:150;  fill:forwards;from: 0.1 0.1 0.1; to: 1 1 1">
+        <a-entity  position="0 0 -1" geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02" material="color: white; shader: flat">
         </a-entity>
-        <a-entity raycaster="showLine:false; far: 1000; objects: .teleporter, .lighting" line="color:orange; opacity:1"></a-entity>
+        <a-entity raycaster="objects: .teleporter, .lighting;" line="color:orange; opacity:1"></a-entity>
       </a-entity>
     </a-entity>
 
@@ -135,7 +135,6 @@
   <script type="text/javascript">
     AFRAME.registerComponent('pointlight', {
       init: function() {
-        console.log('aa')
         this.el.setObject3D('light', new THREE.PointLight());
       }
     });
@@ -144,29 +143,23 @@
       init: async function() {
         this.el.addEventListener("raycaster-intersected", evt => {
           this.intersectingRaycaster = evt.detail.el.components.raycaster;
-          console.log(evt.srcElement.id)
           setTimeout(() => {
             if (this.intersectingRaycaster != null) {
               switch (evt.srcElement.id) {
                 case "top-tp":
                   movePlayer('0 0 -8')
-                  console.log('top')
                   break;
                 case "left-tp":
                   movePlayer('8 0 2')
-                  console.log('left')
                   break;
                 case "right-tp":
                   movePlayer('-8 0 0')
-                  console.log('right')
                   break;
                 case "back-tp":
                   movePlayer('2 0 8')
-                  console.log('back')
                   break;
                 case "middle-tp":
                   movePlayer('0 0 0')
-                  console.log('middle')
                   break;
                   // case "desk-lamp-base":
                   //   evt.srcElement.active = !evt.srcElement.active;
