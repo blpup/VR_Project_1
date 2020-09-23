@@ -28,11 +28,19 @@
       <a-asset-item id="fan" src="./assets/models/fan/scene.gltf"></a-asset-item>
     </a-assets>
 
+    <a-entity pointlight intensity=.4></a-entity>
     <!-- Model #1  TELEVISION -->
     <a-gltf-model position="0 0.860 -10" scale=".05 .05 .05" src="#television"></a-gltf-model>
     <!-- Model #2  LAMP -->
-    <a-gltf-model position="-2.800 .1 -9.6" scale=".03 .03 .03" src="#lamp1"></a-gltf-model>
-    <a-gltf-model position="2.800 .1 -9.6" scale=".03 .03 .03" src="#lamp1"></a-gltf-model>
+    <a-entity position="-2.800 0 -9.6">
+      <a-gltf-model scale=".03 .03 .03" src="#lamp1"></a-gltf-model>
+      <a-light type="hemisphere" color="#fff" intensity=.3></a-light>
+    </a-entity>
+    <a-entity position="2.800 0 -9.6">
+      <a-gltf-model  scale=".03 .03 .03" src="#lamp1"></a-gltf-model>
+      <a-light type="hemisphere" color="#fff" id="desk-lamp-light-real" intensity=.3></a-light>
+    </a-entity>
+
     <!-- Model #3  BED -->
     <a-gltf-model position="0 0 8.7" scale=".03  .05 .03" src="#bed" rotation="0 180 0"></a-gltf-model>
     <!-- Model #4  NIGHTSTAND -->
@@ -42,12 +50,12 @@
     <a-gltf-model position="0 .1 0" scale="3 1 3" src="#carpet"></a-gltf-model>
 
     <!-- (TELEPORT PADS) -->
-    <a-plane position="-9.962 1.699 1.832" rotation="0 90 0" color="black" class="teleporter" id="right-tp" collider-check></a-plane>
+    <a-plane position="-9.962 1.699 1.832" rotation="0 90 0" color="black" class="teleporter" id="right-tp" collider-check src="http://3.bp.blogspot.com/-H57vRpipBhs/T92h_GLMFAI/AAAAAAAAAAc/zLYxoSfXv9w/s1600/avatar_movie_poster_final_01.jpg"></a-plane>
     <a-plane position="9.962 1.699 1.832" rotation="0 -90 0" color="black" class="teleporter" id="left-tp" collider-check></a-plane>
     <a-plane position="-4.005 1.699 -9.931"  color="black" class="teleporter" id="top-tp" collider-check></a-plane>
     <a-plane position="3.750 1.5 9.969" rotation="0 180 0" color="black" class="teleporter" id="back-tp" onclick="movePlayer('0 0 8')" collider-check></a-plane>
     <!-- Model #6  GUITAR -->
-    <a-gltf-model position="-1.874 .850 -9.876" scale=".1 .1 .1" rotation="80 0 0" src="#guitar"></a-gltf-model>
+    <a-gltf-model position="-1.874 .750 -9.876" scale=".1 .1 .1" rotation="80 0 0" src="#guitar"></a-gltf-model>
 
 
     <!-- Model #7  GYM -->
@@ -76,7 +84,7 @@
     <a-grid id="ground" static-body material="src: #texture-floor" scale=".3 .3 .3"></a-grid>
     <a-grid id="ground" position="0 3 0" static-body material="src: #texture-floor" rotation="90 0 0" scale=".3 .3 .3"></a-grid>
 
-    <a-entity pointlight></a-entity>
+
 
     <!-- Self Created Model #1  TABLE-->
     <a-entity position="8 0 0">
@@ -116,19 +124,15 @@
       <a-cylinder scale=".1 .05 .1" position="0 .14 0" id="desk-lamp-base" class="lighting"></a-cylinder>
       <a-cylinder scale=".01 .05 .01" position="-.02 .58 0" rotation="90 90" color="#515336"></a-cylinder>
       <a-cylinder scale=".01 .5 .01" position="0 0.4 0" color="#515336"></a-cylinder>
-      <!-- <a-light type="hemisphere" color="#fffa61" position="-0.19 .581 .002" id="desk-lamp-light-real" intensity=0></a-light> -->
+      <a-light type="hemisphere" color="#fffa61" position="-0.19 .581 .002" id="desk-lamp-light-real" intensity=0></a-light>
     </a-entity>
     <!-- Self Created Model #4  END-->
 
     <!-- Self Created Model #5  DOOR-->
-    <!-- <a-entity position="8 0 -2">
-      <a-box scale=".2 .5 .2" position=".5 .3 -.5"></a-box>
-      <a-box scale=".2 .5 .2" position=".5 .3 .5"></a-box>
-      <a-box scale=".2 .5 .2" position="-.5 .3 -.5"></a-box>
-      <a-box scale=".2 .5 .2" position="-.5 .3 .5"></a-box>
-      <a-box scale="1.2 0.1 1.2" position="0 0.59 0"></a-box>
-      <a-box scale="1.2 0.1 1.2" position="0 1.2 -0.55" rotation="90 0 0"></a-box>
-    </a-entity> -->
+    <a-entity position="-10 1.2 -7.5">
+      <a-box scale="3 .1 2" position="0" rotation="0 0 90" color="#352303"></a-box>
+      <a-sphere scale=".1 .1 .1" position="0 .127 .770" color="#000"></a-sphere>
+    </a-entity>
     <!-- Self Created Model #5  END-->
   </a-scene>
 
@@ -162,18 +166,18 @@
                 case "middle-tp":
                   movePlayer('0 0 0')
                   break;
-                  // case "desk-lamp-base":
-                  //   evt.srcElement.active = !evt.srcElement.active;
-                  //   let light = document.querySelector('#desk-lamp-light')
-                  //   let lightR = document.querySelector('#desk-lamp-light-real')
-                  //   if(evt.srcElement.active) {
-                  //     light.setAttribute('color','#fffa61');
-                  //     lightR.setAttribute('intensity',.5);
-                  //   } else {
-                  //     light.setAttribute('color','#fff');
-                  //     lightR.setAttribute('intensity',0);
-                  //   }
-                  //   break;
+                  case "desk-lamp-base":
+                    evt.srcElement.active = !evt.srcElement.active;
+                    let light = document.querySelector('#desk-lamp-light')
+                    let lightR = document.querySelector('#desk-lamp-light-real')
+                    if(evt.srcElement.active) {
+                      light.setAttribute('color','#fffa61');
+                      lightR.setAttribute('intensity',.5);
+                    } else {
+                      light.setAttribute('color','#fff');
+                      lightR.setAttribute('intensity',0);
+                    }
+                    break;
                 default:
               }
             }
