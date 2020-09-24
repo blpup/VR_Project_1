@@ -156,7 +156,6 @@
     AFRAME.registerComponent('collider-check', {
       init: async function() {
         this.el.addEventListener("raycaster-intersected", evt => {
-          console.log('in')
           this.intersectingRaycaster = evt.detail.el.components.raycaster;
           setTimeout(() => {
             if (this.intersectingRaycaster != null) {
