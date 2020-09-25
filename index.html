@@ -144,10 +144,22 @@
       <a-sphere scale=".1 .1 .1" position="0 .127 .770" color="#000"></a-sphere>
     </a-entity>
     <!-- Self Created Model #5  END-->
+
+    <!-- Self Created Model #6  COLOR BOARD-->
+    <a-entity position="10 1.713 1.109" rotation="0 0 90">
+      <a-box scale=".5 .05 .3" position="0" color="#6e6e6e"></a-box>
+      <a-box scale=".1 .1 .1" position=".175 .026 0" color="#ff0000" collider-check id="light-color-red" class="lighting"></a-box>
+      <a-box scale=".1 .1 .1" position=".026 .026 0" color="#11ff00" collider-check id="light-color-green" class="lighting"></a-box>
+      <a-box scale=".1 .1 .1" position="-.130 .026 0" color="#0008ff" collider-check id="light-color-blue" class="lighting"></a-box>
+    </a-entity>
+    <!-- Self Created Model #6  END-->
+
   </a-scene>
 
 
   <script type="text/javascript">
+  let lightActiveStatus = false;
+  let sceenLoaded = false;
     AFRAME.registerComponent('pointlight', {
       init: function() {
         this.el.setObject3D('light', new THREE.PointLight());
@@ -158,7 +170,7 @@
         this.el.addEventListener("raycaster-intersected", evt => {
           this.intersectingRaycaster = evt.detail.el.components.raycaster;
           setTimeout(() => {
-            if (this.intersectingRaycaster != null) {
+            if (this.intersectingRaycaster != null && sceenLoaded) {
               switch (evt.srcElement.id) {
                 case "top-tp":
                   movePlayer('0 0 -8')
@@ -180,15 +192,17 @@
                     let light = document.querySelector('#desk-lamp-light')
                     let lightR = document.querySelector('#desk-lamp-light-real')
                     if(evt.srcElement.active) {
+                      lightActiveStatus = evt.srcElement.active;
                       light.setAttribute('color','#fffa61');
                       lightR.setAttribute('intensity',.5);
+                      lightR.setAttribute('color','#fffa61');
                     } else {
+                      lightActiveStatus = evt.srcElement.active;
                       light.setAttribute('color','#fff');
                       lightR.setAttribute('intensity',0);
                     }
                     break;
                   case "controller":
-                    console.log('controller')
                     let car = document.querySelector('#car')
                     if(!evt.srcElement.active) {
                       evt.srcElement.active = true;
@@ -204,6 +218,30 @@
                         },2000)
                       },2000)
                     },2000)
+                  break;
+                  case "light-color-red":
+                    if(lightActiveStatus) {
+                      let light = document.querySelector('#desk-lamp-light')
+                      let lightR = document.querySelector('#desk-lamp-light-real')
+                      light.setAttribute('color','#ff0000')
+                      lightR.setAttribute('color','#ff0000')
+                    }
+                  break;
+                  case "light-color-green":
+                    if(lightActiveStatus) {
+                      let light = document.querySelector('#desk-lamp-light')
+                      let lightR = document.querySelector('#desk-lamp-light-real')
+                      light.setAttribute('color','#11ff00')
+                      lightR.setAttribute('color','#11ff00')
+                    }
+                  break;
+                  case "light-color-blue":
+                    if(lightActiveStatus) {
+                      let light = document.querySelector('#desk-lamp-light')
+                      let lightR = document.querySelector('#desk-lamp-light-real')
+                      light.setAttribute('color','#0008ff')
+                      lightR.setAttribute('color','#0008ff')
+                    }
                   break;
                 default:
               }
@@ -233,6 +271,7 @@
       "width": 10
     }
     document.querySelector('a-scene').addEventListener('loaded', function() {
+      sceenLoaded = true;
       var WALL_SIZE = 2.5,
         WALL_HEIGHT = 3;
       var el = document.querySelector('#walls');
