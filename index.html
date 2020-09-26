@@ -26,14 +26,19 @@
       <a-asset-item id="plant" src="./assets/models/plant/scene.gltf"></a-asset-item>
       <a-asset-item id="carD" src="./assets/models/card/scene.gltf"></a-asset-item>
       <a-asset-item id="controller" src="./assets/models/controller/scene.gltf"></a-asset-item>
+      <img id="pizzaboxsprite" src="./assets/images/pizzabox.jpg">
+      <img id="cautiontape" src="./assets/images/cautiontape.jpg">
     </a-assets>
 
     <a-entity pointlight intensity=.4></a-entity>
 
-    <a-plane position="-1.720 1.514 -1.579" rotation="0 45 0" src="./assets/images/instructions.jpg"></a-plane>
+    <a-plane position="-1.720 1.514 -1.579" rotation="0 45 0" src="./assets/images/instructions.jpg" class="teleporter" collider-check id="middle-tp"></a-plane>
     <!-- Model #1  TELEVISION -->
-    <a-entity position="0 0.860 -10" collider-check active="false">
+    <a-entity position="0 0.860 -10" id="tvappend">
       <a-gltf-model scale=".05 .05 .05" src="#television"></a-gltf-model>
+      <!-- 0.126 -->
+      <a-video position="0 0.901 0.083" scale="3 1.5 1" id="screen"></a-video>
+      <a-cylinder position="-.026 .124 .1" scale=".08 .08 .1" rotation="0 90 90" color="#ff0000" id="tvbutton" collider-check active="false" class="tv"></a-cylinder>
     </a-entity>
     <!-- Model #2  LAMP -->
     <a-entity position="-2.800 0 -9.6">
@@ -78,7 +83,7 @@
     <a-plane position="-9.962 1.699 1.832" rotation="0 90 0" class="teleporter" id="right-tp" collider-check src="./assets/images/poster1.jpg"></a-plane>
     <a-plane position="9.962 1.699 1.832" rotation="0 -90 0" class="teleporter" id="left-tp" collider-check src="./assets/images/poster2.jpg"></a-plane>
     <a-plane position="-4.005 1.699 -9.931" class="teleporter" id="top-tp" collider-check src="./assets/images/poster3.jpg"></a-plane>
-    <a-plane position="3.750 1.5 9.969" rotation="0 180 0"  class="teleporter" id="back-tp" collider-check src="./assets/images/poster4.jpg"></a-plane>
+    <a-plane position="3.750 1.5 9.969" rotation="0 180 0" class="teleporter" id="back-tp" collider-check src="./assets/images/poster4.jpg"></a-plane>
 
 
     <!-- PLAYER -->
@@ -86,13 +91,13 @@
       <a-entity camera position="0 1.6 0" look-controls>
         <a-entity position="0 0 -1" geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02" material="color: white; shader: flat">
         </a-entity>
-        <a-entity raycaster="objects: .teleporter, .lighting, .controller;" line="color:orange; opacity:1"></a-entity>
+        <a-entity raycaster="objects: .teleporter, .lighting, .controller, .tv;" line="color:orange; opacity:1"></a-entity>
       </a-entity>
     </a-entity>
 
     <!-- WALLS -->
-    <a-entity id="walls" dynamic-body></a-entity>
-    <a-grid id="ground" static-body material="src: #texture-floor" scale=".3 .3 .3"></a-grid>
+    <a-entity id="walls"></a-entity>
+    <a-grid id="ground" material="src: #texture-floor" scale=".3 .3 .3"></a-grid>
     <a-grid id="ground" position="0 3 0" static-body material="src: #texture-floor" rotation="90 0 0" scale=".3 .3 .3"></a-grid>
 
 
@@ -154,6 +159,49 @@
       <a-box scale=".1 .1 .1" position="-.130 .026 0" color="#0008ff" collider-check id="light-color-blue" class="lighting"></a-box>
     </a-entity>
     <!-- Self Created Model #6  END-->
+
+    <!-- Self Created Model #6  COVID MODE-->
+    <a-entity position="10 1.713 2.592" rotation="0 0 90">
+      <a-plane position=".177 .006 .007" rotation="-90 -90 0" scale=".3 .1 1" src="./assets/images/covid.jpg"></a-plane>
+      <a-box scale=".2 .05 .2" position="" color="#6e6e6e"></a-box>
+      <a-box scale=".1 .1 .1" position="0 0 0" color="#ff0000" collider-check id="covid-mode" class="lighting" active="false"></a-box>
+    </a-entity>
+    <!-- Self Created Model #6  END-->
+    <a-entity visible="false" id="covid-mode-scene">
+      <a-entity position="0 .06 -4.6" rotation="90 0 180">
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
+      </a-entity>
+
+      <a-entity position=".033 .06 -9.376" rotation="90 0 180">
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
+      </a-entity>
+
+      <a-entity position="7.664 1.229 0.234" rotation="90 0 180">
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
+      </a-entity>
+
+      <a-entity position="-9.121 .06 3.568" rotation="90 0 45">
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
+      </a-entity>
+
+      <a-entity position="3.110 .06 9.234" rotation="90 0 0">
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
+        <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
+      </a-entity>
+      <a-entity position="-9.927 1.561 -7.540">
+        <a-box src="#cautiontape" rotation="45 0 90" scale="3 .3 .2"></a-box>
+        <a-box src="#cautiontape" rotation="-45 0 90" scale="3 .3 .2"></a-box>
+      </a-entity>
+    </a-entity>
 
   </a-scene>
 
@@ -255,6 +303,35 @@
                   }
                   intersectedIn = true;
                   break;
+                case "covid-mode":
+                  let covidmode = document.querySelector('#covid-mode-scene');
+                  let covidmodeButton = document.querySelector('#covid-mode');
+                  evt.srcElement.active = !evt.srcElement.active;
+                  if(evt.srcElement.active) {
+                    covidmode.setAttribute('visible', true);
+                    covidmodeButton.setAttribute('color','#11ff00')
+                  } else {
+                    covidmode.setAttribute('visible', false);
+                    covidmodeButton.setAttribute('color','#ff0000')
+                  }
+                  intersectedIn = true;
+                  break;
+                case "tvbutton":
+                  let screen = document.querySelector("#screen");
+                  let screenButton = document.querySelector("#tvbutton");
+                  evt.srcElement.active = !evt.srcElement.active;
+                  if(evt.srcElement.active) {
+                    screen.setAttribute('position','0 0.901 0.126')
+                    screen.setAttribute('src','./assets/videos/video1.mp4');
+                    screenButton.setAttribute('color', '#11ff00');
+                  } else {
+                    //screen.setAttribute('position','0 0.901 0.083')
+                    screen.setAttribute('src','./assets/videos/video2.mp4');
+                    screenButton.setAttribute('color', '#ff0000')
+                  }
+
+                  intersectedIn = true;
+                  break;
                 default:
               }
             }
@@ -308,8 +385,6 @@
             wall.setAttribute('position', position);
             wall.setAttribute('static-body', '');
           }
-
-
         }
       }
 
