@@ -15,7 +15,6 @@
     <a-assets>
       <img id="texture-floor" src="./assets/images/floor.jpg">
       <img id="texture-wall" src="./assets/images/wall.jpg">
-      <a-asset-item id="television" src="./assets/models/television/scene.gltf"></a-asset-item>
       <a-asset-item id="lamp1" src="./assets/models/lamp/scene.gltf"></a-asset-item>
       <a-asset-item id="bed" src="./assets/models/bed/scene.gltf"></a-asset-item>
       <a-asset-item id="nightstand" src="./assets/models/night_stand/scene.gltf"></a-asset-item>
@@ -27,14 +26,19 @@
       <a-asset-item id="carD" src="./assets/models/card/scene.gltf"></a-asset-item>
       <a-asset-item id="controller" src="./assets/models/controller/scene.gltf"></a-asset-item>
       <a-asset-item id="box" src="./assets/models/box/scene.gltf"></a-asset-item>
+
+      <audio id="guitar" src="./assets/sound/acoustic.mp3" preload="auto"></audio>
+
       <img id="pizzaboxsprite" src="./assets/images/pizzabox.jpg">
       <img id="cautiontape" src="./assets/images/cautiontape.jpg">
     </a-assets>
 
     <a-entity pointlight intensity=.4></a-entity>
 
-    <a-plane position="-1.720 1.514 -1.579" rotation="0 45 0" src="./assets/images/instructions.jpg" class="teleporter" collider-check id="middle-tp"></a-plane>
+    <a-plane position="1.720 1.514 -1.579" rotation="0 -45 0" src="./assets/images/instructions.jpg" class="teleporter" collider-check id="middle-tp"></a-plane>
 
+
+    <a-plane scale="3 1.5 1" position="0  1.742 -9.994" color="black"></a-plane>
     <!-- Model #2  LAMP -->
     <a-entity position="-2.800 0 -9.6">
       <a-gltf-model scale=".03 .03 .03" src="#lamp1"></a-gltf-model>
@@ -52,7 +56,7 @@
 
 
     <!-- Model #5  GUITAR -->
-    <a-gltf-model position="-1.874 .750 -9.876" scale=".1 .1 .1" rotation="80 0 0" src="#guitar"></a-gltf-model>
+    <a-gltf-model position="-1.874 .750 -9.876" scale=".1 .1 .1" rotation="80 0 0" src="#guitar" sound-check sound="src: ./assets/sound/acoustic.mp3; autoplay: false" id="guitar" class="sound"></a-gltf-model>
 
 
     <!-- Model #6  GYM -->
@@ -87,7 +91,7 @@
     <a-entity id="player">
       <a-entity camera look-controls position="0 1.6 0">
         <a-cursor id="cursor" color="white" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-          event-set__mouseenter="_event: mouseenter; color: springgreen" event-set__mouseleave="_event: mouseleave; color: white" raycaster="objects: .teleporter, .lighting, .controller, .tv, .moveable;"></a-cursor>
+          event-set__mouseenter="_event: mouseenter; color: springgreen" event-set__mouseleave="_event: mouseleave; color: white" raycaster="objects: .teleporter, .lighting, .controller, .moveable, .sound;"></a-cursor>
       </a-entity>
     </a-entity>
 
@@ -372,6 +376,20 @@
           }
       }
 
+    });
+
+    AFRAME.registerComponent('sound-check', {
+      init: async function() {
+        this.el.addEventListener("raycaster-intersected", evt => {
+          this.intersectingRaycaster = evt.detail.el.components.raycaster;
+              let guitar = document.querySelector('[sound]');
+              guitar.components.sound.playSound();
+        });
+        this.el.addEventListener("raycaster-intersected-cleared", () => {
+          this.intersectingRaycaster = null;
+          intersectedIn = false;
+        });
+      }
     });
     var map = {
       "data": [
