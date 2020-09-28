@@ -1,91 +1,106 @@
-# A-Frame Boilerplate
+# CS 4331 - Project #1
 
-Boilerplate for creating WebVR scenes with [A-Frame](https://aframe.io).
+## Moon House
 
-Alternatively, check out the [A-Frame Starter on
-glitch.com](https://glitch.com/~aframe) for a more interactive way on getting
-started.
+![Main Screenshot](https://via.placeholder.com/150)
 
-## Getting Started
+### Interactions/Animations
 
-There are two easy options for obtaining this A-Frame scene. It's then up to you to make it your own!
+#### Nite Nite Box
 
-### <sup>Option 1:</sup> Download the ZIP kit 📦
+The sun changes position when the Nite Nite box in clicked. It changes the y-coordinate from 0 to 1.1 in 0.1 steps.
 
-[<img src="http://i.imgur.com/UVPZoM0.png" width="200">](https://github.com/aframevr/aframe-boilerplate/archive/master.zip)
+![Nite Nite box gif](https://via.placeholder.com/150)
 
-After you have __[downloaded and extracted this `.zip` file](https://github.com/aframevr/aframe-boilerplate/archive/master.zip)__ containing the contents of this repo, open the resulting directory, and you'll be have your scene ready in these few steps:
+```
+AFRAME.registerComponent('nite-nite', {
+    schema: {
+        to: {default: '2.5 2.5 2.5'}
+    },
 
-    npm install && npm start
-    open http://localhost:3000/
+    init: function () {
+        this.el.addEventListener('click', function () {
+            var sun = document.getElementById('enviro');
+            var currentValue = sun.getAttribute("environment", "lightPosition");
+            if (currentValue.lightPosition.y < 1) {
+                    var y_pos = currentValue.lightPosition.y + 0.1;
+                    sun.setAttribute("environment", "lightPosition", "1 " + y_pos + " 0");
+            } else {
+                sun.setAttribute("environment", "lightPosition", "1 0 0");
+            }
+        });
+    }
+});
+```
 
-<hr>
+```
+<a-entity class="clickable" geometry="height: 1; depth: 1; width: 1" position="-10 1 13" scale="0.5 0.5 0.5" nite-nite=""
+          material="color=#f35169">
+    <a-animation attribute="rotation"
+                from="45 0 45"
+                dur="3000"
+                to="45 360 45"
+                repeat="indefinite"
+                easing="linear"></a-animation>
+</a-entity>
+```
 
-### <small><sup>Option 2:</sup> Fork this Git repo 🍴🐙
+#### Garage Door
 
-Alternatively, you can __[fork this repo](https://github.com/aframevr/aframe-boilerplate/fork)__ to get started, if you'd like to maintain a Git workflow.
+The garage door opens/closed when clicked. This is done by changing position and rotation at the same time.
 
-After you have __[forked this repo](https://github.com/aframevr/aframe-boilerplate/fork)__, clone a copy of your fork locally and you'll be have your scene ready in these few steps:
+![Garage door gif](https://via.placeholder.com/150)
 
-    git clone https://github.com/aframevr/aframe-boilerplate.git
-    cd aframe-boilerplate && rm -rf .git && npm install && npm start
-    open http://localhost:3000/
+```
+<a-entity id="garage_door" class="clickable" static-body geometry="primitive: box; depth: 0.1; height: 3; width: 4"
+          position="2 1.5 7" rotation="0 0 0" material="shader: standard;
+          roughness: 1; src: url(images/garage_door.jpg); repeat: 1 2">
+    <a-animation begin="click" attribute="position" from="2 1.5 7" to= "2 2.8 7" dur="3000" direction="alternate"></a-animation>
+    <a-animation begin="click" attribute="rotation" from="0 0 0" to= "-90 0 0" dur="3000" direction="alternate"></a-animation>
+</a-entity>
+```
 
-> :iphone: **Mobile pro tip:** Upon starting the development server, the URL will be logged to the console. Load that URL from a browser on your mobile device. (If your mobile phone and computer are not on the same LAN, consider using [ngrok](https://ngrok.com/) for local development and testing. [Browsersync](https://www.browsersync.io/) is also worth a gander.)
+#### Earth
 
-<hr>
+The earth is a giant Collada model which rotates in its own axis by an a-frame animation element.
 
-### <small><sup>Option 3:</sup> Fork this CodePen example 🍴💾✒️
+![Rotating earth](https://via.placeholder.com/150)
 
-Or, you can simply __[fork this CodePen example](http://codepen.io/team/mozvr/pen/BjygdO?editors=100)__ to dive right in. Enjoy!
+```
+<a-entity collada-model="#planet" rotation="45 0 45" position="70 150 -100" scale="80 80 80">
+	<a-animation attribute="rotation" from="45 0 45" dur="200000" to="45 360 45" repeat="indefinite" easing="linear"></a-animation>
+</a-entity>
+```
 
+## Sources
 
-## Publishing your scene
+### Models
 
-If you don't already know, GitHub offers free and awesome publishing of static sites through __[GitHub Pages](https://pages.github.com/)__.
+11 unique models were used in building this project.
 
-To publish your scene to your personal GitHub Pages:
+* Night Stand - https://sketchfab.com/3d-models/simple-nightstand-26d08ce396454ee3bd56ffa160e6538b
+* Bed - https://sketchfab.com/3d-models/bed-403c4a48e5ea4a9fbbb9a096d90973af
+* Guitar - https://sketchfab.com/3d-models/classical-guitar-ad63274604e4416a86a1175d63cadeff
+* Gym - https://sketchfab.com/3d-models/gym-multiple-df5e938192244b82a1e59c7145030ee0
+* Bookshelf - https://sketchfab.com/3d-models/bookshelf-b8f46cf7daca419a87ac8d131bad056f
+* Plant - https://sketchfab.com/3d-models/indoor-pot-plant-3-8ad9b497549f42d4b8fa798828d6ec1e
+* Truck - https://sketchfab.com/3d-models/dumptruck-qCWXrNLMlMOEtD5rcS0zOKbdkbB
+* Controller - https://sketchfab.com/models/961d6215e3624c6eb861970acc953592
+* Japanese Lamp - https://sketchfab.com/models/e816f01aa14b4af99a582b4d6a8cbdd0
+* Window - https://sketchfab.com/models/ce64c54fc8fb443c8135ac2caa2e9243
+* Box - https://sketchfab.com/models/0641e66ea33c415694cf84f786178960
 
-    npm run deploy
+### Textures
 
-And, it'll now be live at __http://`your_username`.github.io/__ :)
+* Pizza Hut Box - https://live.staticflickr.com/1156/5149222704_75099d2392_n.jpg
 
-<hr>
+### Art
 
-To know which GitHub repo to deploy to, the `deploy` script first looks at the optional [`repository` key](https://docs.npmjs.com/files/package.json#repository) in the [`package.json` file](package.json) (see [npm docs](https://docs.npmjs.com/files/package.json#repository) for sample usage). If the `repository` key is missing, the script falls back to using the local git repo's remote origin URL (you can run the local command `git remote -v` to see all your remotes; also, you may refer to the [GitHub docs](https://help.github.com/articles/about-remote-repositories/) for more information).
+* Painting 1 - https://www.etsy.com/listing/704185211/bold-and-brash-print-poster?gpla=1&gao=1&&utm_source=google&utm_medium=cpc&utm_campaign=shopping_us_ts1-c-art_and_collectibles-prints-digital_prints&utm_custom1=50c105c2-bac8-43c3-b98c-64228306159c&utm_content=go_2063581104_76452839735_367965825297_pla-328046931108_c__704185211&utm_custom2=2063581104&gclid=Cj0KCQjwqrb7BRDlARIsACwGad4Fk2wWWYSh-ry69LsPoFqbqWb43p2p7COnG4MDi7EN5Jy0tLggQaoaAvqjEALw_wcB
+* Painting 2 - https://www.etsy.com/listing/711251717/my-hero-academia-poster-bakugou-katsuki?ref=pla_similar_listings_top_ad-1&plkey=bb77bac81caafa9704689595a7cb2e4704fe960b%3A711251717&frs=1
+* Painting 3 - https://www.etsy.com/listing/262615370/dead-and-company-official-screen-printed?ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=print+poster&ref=sc_gallery-1-19&plkey=a52ed39531ee31c86c754623d7a30a1360e28be7%3A262615370&frs=1&sca=1
+* Painting 4 - http://muvial.blogspot.com/2013/01/normal-0-false-false-false-en-us-x-none.html
 
-<hr>
+## References
 
-## Still need Help?
-
-### Installation
-
-First make sure you have Node installed.
-
-On Mac OS X, it's recommended to use [Homebrew](http://brew.sh/) to install Node + [npm](https://www.npmjs.com):
-
-    brew install node
-
-To install the Node dependencies:
-
-    npm install
-
-
-### Local Development
-
-To serve the site from a simple Node development server:
-
-    npm start
-
-Then launch the site from your favourite browser:
-
-[__http://localhost:3000/__](http://localhost:3000/)
-
-If you wish to serve the site from a different port:
-
-    PORT=8000 npm start
-
-
-## License
-
-This program is free software and is distributed under an [MIT License](LICENSE).
+* [A-frame](https://aframe.io/)
