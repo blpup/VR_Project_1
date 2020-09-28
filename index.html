@@ -353,14 +353,10 @@
       init: async function() {
         this.el.addEventListener("raycaster-intersected", evt => {
           this.intersectingRaycaster = evt.detail.el.components.raycaster;
-              let box1 = document.querySelector("#moveablebox1");
-              let cursor = document.querySelector("#cursor");
               boxMoveable = true;
               setTimeout(function(){
                 boxMoveable = false;
               },3000)
-              console.log(cursor.object3D.getWorldPosition());
-              //box1.setAttribute('position', cursor.object3D.getWorldPosition())
         });
         this.el.addEventListener("raycaster-intersected-cleared", () => {
           this.intersectingRaycaster = null;
@@ -370,8 +366,9 @@
       tick: async function() {
         let cursor = document.querySelector("#cursor");
         let box1 = document.querySelector("#moveablebox1");
+        var wpVector = new THREE.Vector3();
           if(boxMoveable) {
-            box1.setAttribute('position', cursor.object3D.getWorldPosition().x +" "+  (cursor.object3D.getWorldPosition().y) +" "+ (cursor.object3D.getWorldPosition().z))
+            box1.setAttribute('position', cursor.object3D.getWorldPosition(wpVector).x +" "+  (cursor.object3D.getWorldPosition(wpVector).y) +" "+ (cursor.object3D.getWorldPosition(wpVector).z))
           }
       }
 
