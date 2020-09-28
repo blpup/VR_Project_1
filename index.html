@@ -26,6 +26,7 @@
       <a-asset-item id="plant" src="./assets/models/plant/scene.gltf"></a-asset-item>
       <a-asset-item id="carD" src="./assets/models/card/scene.gltf"></a-asset-item>
       <a-asset-item id="controller" src="./assets/models/controller/scene.gltf"></a-asset-item>
+      <a-asset-item id="box" src="./assets/models/box/scene.gltf"></a-asset-item>
       <img id="pizzaboxsprite" src="./assets/images/pizzabox.jpg">
       <img id="cautiontape" src="./assets/images/cautiontape.jpg">
     </a-assets>
@@ -33,50 +34,7 @@
     <a-entity pointlight intensity=.4></a-entity>
 
     <a-plane position="-1.720 1.514 -1.579" rotation="0 45 0" src="./assets/images/instructions.jpg" class="teleporter" collider-check id="middle-tp"></a-plane>
-    <!-- Model #1  TELEVISION -->
-    <a-entity position="0 0.860 -10" id="tvappend">
-      <a-gltf-model scale=".05 .05 .05" src="#television"></a-gltf-model>
-      <!-- 0.126 -->
-      <a-video position="0 0.901 0.083" scale="3 1.5 1" id="screen"></a-video>
-      <a-cylinder position="-.026 .124 .1" scale=".08 .08 .1" rotation="0 90 90" color="#ff0000" id="tvbutton" collider-check active="false" class="tv"></a-cylinder>
-    </a-entity>
-    <!-- Model #2  LAMP -->
-    <a-entity position="-2.800 0 -9.6">
-      <a-gltf-model scale=".03 .03 .03" src="#lamp1"></a-gltf-model>
-      <a-light type="hemisphere" color="#fff" intensity=.3></a-light>
-    </a-entity>
-    <a-entity position="2.800 0 -9.6">
-      <a-gltf-model scale=".03 .03 .03" src="#lamp1"></a-gltf-model>
-      <a-light type="hemisphere" color="#fff" intensity=.3></a-light>
-    </a-entity>
 
-    <!-- Model #3  BED -->
-    <a-gltf-model position="0 0 8.7" scale=".03  .05 .03" src="#bed" rotation="0 180 0"></a-gltf-model>
-    <!-- Model #4  NIGHTSTAND -->
-    <a-gltf-model position="1.625 .05 9.676" scale=".3 .3 .3" src="#nightstand" rotation="0 180 0"></a-gltf-model>
-
-
-    <!-- Model #5  GUITAR -->
-    <a-gltf-model position="-1.874 .750 -9.876" scale=".1 .1 .1" rotation="80 0 0" src="#guitar"></a-gltf-model>
-
-
-    <!-- Model #6  GYM -->
-    <a-gltf-model position="-8.389 .103 -1.236" scale=".05 .035 .05" src="#gym"></a-gltf-model>
-
-    <!-- Model #7  BOOKSHELF -->
-    <a-gltf-model position="4.198 .850 -9.631" scale=".05 .05 .05" src="#books"></a-gltf-model>
-
-    <!-- Model #8  WINDOW -->
-    <a-gltf-model position="-4.196 1.473 7.956" scale=".01 .01 .01" rotation="0 90 0" src="#window"></a-gltf-model>
-
-    <!-- Model #9  PLANT -->
-    <a-gltf-model position="9.413 -0.030 -9.302" scale="1 1 1" src="#plant"></a-gltf-model>
-
-    <!-- Model #10  CAR -->
-    <a-gltf-model position="1 .075 -2.569" scale=".1 .1 .1" rotation="0 90 0" src="#carD" id="car"></a-gltf-model>
-
-    <!-- Model #11  CONTROLLER -->
-    <a-gltf-model position="-.880 .133 -2.488" scale=".001 .001 .001" rotation="-90 0 0" src="#controller" class="controller" id="controller" collider-check active="false"></a-gltf-model>
 
 
     <!-- (TELEPORT PADS) -->
@@ -206,6 +164,14 @@
         <a-box src="#cautiontape" rotation="45 0 90" scale="3 .3 .2"></a-box>
         <a-box src="#cautiontape" rotation="-45 0 90" scale="3 .3 .2"></a-box>
       </a-entity>
+
+
+      <a-gltf-model position="-9.279 .075 -9.600" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
+      <a-gltf-model position="-9.279 .808 -9.600" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
+      <a-gltf-model position="-9.279 .075 -8.858" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
+      <a-gltf-model position="-8.544 .075 -9.6" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
+      <a-gltf-model position="-9.279 .808 -8.858" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
+      <a-gltf-model position="-7.802 .075 -9.594" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
     </a-entity>
 
   </a-scene>
