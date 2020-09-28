@@ -73,6 +73,8 @@
     <!-- Model #11  CONTROLLER -->
     <a-gltf-model position="-.880 .133 -2.488" scale=".001 .001 .001" rotation="-90 0 0" src="#controller" class="controller" id="controller" collider-check active="false"></a-gltf-model>
 
+    <!-- Model #12 AMAZON BOX -->
+    <a-gltf-model position="4.641 0.050 8.280" scale=".02 .02 .02" rotation="0 90 0" src="#box" moveable-check id="moveablebox1" class="moveable"></a-gltf-model>
 
     <!-- (TELEPORT PADS) -->
     <a-plane position="-9.962 1.699 1.832" rotation="0 90 0" class="teleporter" id="right-tp" collider-check src="./assets/images/poster1.jpg"></a-plane>
@@ -82,16 +84,10 @@
 
 
     <!-- PLAYER -->
-    <a-entity  id="player">
+    <a-entity id="player">
       <a-entity camera look-controls position="0 1.6 0">
-        <a-cursor
-          id="cursor"
-          color="white"
-          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-          event-set__mouseenter="_event: mouseenter; color: springgreen"
-          event-set__mouseleave="_event: mouseleave; color: white"
-          raycaster="objects: .teleporter, .lighting, .controller, .tv;"></a-cursor>
+        <a-cursor id="cursor" color="white" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+          event-set__mouseenter="_event: mouseenter; color: springgreen" event-set__mouseleave="_event: mouseleave; color: white" raycaster="objects: .teleporter, .lighting, .controller, .tv, .moveable;"></a-cursor>
       </a-entity>
     </a-entity>
 
@@ -218,6 +214,7 @@
     let lightActiveStatus = false;
     let sceenLoaded = false;
     let intersectedIn = false;
+    let boxMoveable = false;
     AFRAME.registerComponent('pointlight', {
       init: function() {
         this.el.setObject3D('light', new THREE.PointLight());
@@ -315,12 +312,12 @@
                   let covidmode = document.querySelector('#covid-mode-scene');
                   let covidmodeButton = document.querySelector('#covid-mode');
                   evt.srcElement.active = !evt.srcElement.active;
-                  if(evt.srcElement.active) {
+                  if (evt.srcElement.active) {
                     covidmode.setAttribute('visible', true);
-                    covidmodeButton.setAttribute('color','#11ff00')
+                    covidmodeButton.setAttribute('color', '#11ff00')
                   } else {
                     covidmode.setAttribute('visible', false);
-                    covidmodeButton.setAttribute('color','#ff0000')
+                    covidmodeButton.setAttribute('color', '#ff0000')
                   }
                   intersectedIn = true;
                   break;
@@ -328,16 +325,15 @@
                   let screen = document.querySelector("#screen");
                   let screenButton = document.querySelector("#tvbutton");
                   evt.srcElement.active = !evt.srcElement.active;
-                  if(evt.srcElement.active) {
-                    screen.setAttribute('position','0 0.901 0.126')
-                    screen.setAttribute('src','./assets/videos/video1.mp4');
+                  if (evt.srcElement.active) {
+                    screen.setAttribute('position', '0 0.901 0.126')
+                    screen.setAttribute('src', './assets/videos/video1.mp4');
                     screenButton.setAttribute('color', '#11ff00');
                   } else {
                     //screen.setAttribute('position','0 0.901 0.083')
-                    screen.setAttribute('src','./assets/videos/video2.mp4');
+                    screen.setAttribute('src', './assets/videos/video2.mp4');
                     screenButton.setAttribute('color', '#ff0000')
                   }
-
                   intersectedIn = true;
                   break;
                 default:
@@ -350,6 +346,35 @@
           intersectedIn = false;
         });
       }
+    });
+
+
+    AFRAME.registerComponent('moveable-check', {
+      init: async function() {
+        this.el.addEventListener("raycaster-intersected", evt => {
+          this.intersectingRaycaster = evt.detail.el.components.raycaster;
+              let box1 = document.querySelector("#moveablebox1");
+              let cursor = document.querySelector("#cursor");
+              boxMoveable = true;
+              setTimeout(function(){
+                boxMoveable = false;
+              },3000)
+              console.log(cursor.object3D.getWorldPosition());
+              //box1.setAttribute('position', cursor.object3D.getWorldPosition())
+        });
+        this.el.addEventListener("raycaster-intersected-cleared", () => {
+          this.intersectingRaycaster = null;
+          intersectedIn = false;
+        });
+      },
+      tick: async function() {
+        let cursor = document.querySelector("#cursor");
+        let box1 = document.querySelector("#moveablebox1");
+          if(boxMoveable) {
+            box1.setAttribute('position', cursor.object3D.getWorldPosition().x +" "+  (cursor.object3D.getWorldPosition().y) +" "+ (cursor.object3D.getWorldPosition().z))
+          }
+      }
+
     });
     var map = {
       "data": [
