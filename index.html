@@ -35,6 +35,43 @@
 
     <a-plane position="-1.720 1.514 -1.579" rotation="0 45 0" src="./assets/images/instructions.jpg" class="teleporter" collider-check id="middle-tp"></a-plane>
 
+    <!-- Model #2  LAMP -->
+    <a-entity position="-2.800 0 -9.6">
+      <a-gltf-model scale=".03 .03 .03" src="#lamp1"></a-gltf-model>
+      <a-light type="hemisphere" color="#fff" intensity=.3></a-light>
+    </a-entity>
+    <a-entity position="2.800 0 -9.6">
+      <a-gltf-model scale=".03 .03 .03" src="#lamp1"></a-gltf-model>
+      <a-light type="hemisphere" color="#fff" intensity=.3></a-light>
+    </a-entity>
+
+    <!-- Model #3  BED -->
+    <a-gltf-model position="0 0 8.7" scale=".03  .05 .03" src="#bed" rotation="0 180 0"></a-gltf-model>
+    <!-- Model #4  NIGHTSTAND -->
+    <a-gltf-model position="1.625 .05 9.676" scale=".3 .3 .3" src="#nightstand" rotation="0 180 0"></a-gltf-model>
+
+
+    <!-- Model #5  GUITAR -->
+    <a-gltf-model position="-1.874 .750 -9.876" scale=".1 .1 .1" rotation="80 0 0" src="#guitar"></a-gltf-model>
+
+
+    <!-- Model #6  GYM -->
+    <a-gltf-model position="-8.389 .103 -1.236" scale=".05 .035 .05" src="#gym"></a-gltf-model>
+
+    <!-- Model #7  BOOKSHELF -->
+    <a-gltf-model position="4.198 .850 -9.631" scale=".05 .05 .05" src="#books"></a-gltf-model>
+
+    <!-- Model #8  WINDOW -->
+    <a-gltf-model position="-4.196 1.473 7.956" scale=".01 .01 .01" rotation="0 90 0" src="#window"></a-gltf-model>
+
+    <!-- Model #9  PLANT -->
+    <a-gltf-model position="9.413 -0.030 -9.302" scale="1 1 1" src="#plant"></a-gltf-model>
+
+    <!-- Model #10  CAR -->
+    <a-gltf-model position="1 .075 -2.569" scale=".1 .1 .1" rotation="0 90 0" src="#carD" id="car"></a-gltf-model>
+
+    <!-- Model #11  CONTROLLER -->
+    <a-gltf-model position="-.880 .133 -2.488" scale=".001 .001 .001" rotation="-90 0 0" src="#controller" class="controller" id="controller" collider-check active="false"></a-gltf-model>
 
 
     <!-- (TELEPORT PADS) -->
