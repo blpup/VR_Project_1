@@ -6,43 +6,62 @@
 
 ### Interactions/Animations
 
-#### Nite Nite Box
+#### Teleportation Pads
 
-The sun changes position when the Nite Nite box in clicked. It changes the y-coordinate from 0 to 1.1 in 0.1 steps.
+When you look at a poster on the wall or the instruction panel in the middle of the scene, you will teleport to a location close to that poster.
 
-![Nite Nite box gif](https://via.placeholder.com/150)
-
+![Poster 1 Screenshot](./ReadMeAssets/teleporter1.jpg)
+![Poster 2 Screenshot](./ReadMeAssets/teleporter2.jpg)
+![Poster 3 Screenshot](./ReadMeAssets/teleporter3.jpg)
+![Poster 4 Screenshot](./ReadMeAssets/teleporter4.jpg)
+![Poster 5 Screenshot](./ReadMeAssets/teleporter1.jpg)
 ```
-AFRAME.registerComponent('nite-nite', {
-    schema: {
-        to: {default: '2.5 2.5 2.5'}
-    },
+AFRAME.registerComponent('collider-check', {
+  init: async function() {
+    this.el.addEventListener("raycaster-intersected", evt => {
+      this.intersectingRaycaster = evt.detail.el.components.raycaster;
+      setTimeout(() => {
+        if (this.intersectingRaycaster != null && sceenLoaded && !intersectedIn) {
+          switch (evt.srcElement.id) {
+            case "top-tp":
+              movePlayer('0 0 -8')
+              intersectedIn = true;
+              break;
+            case "left-tp":
+              movePlayer('8 0 2')
+              intersectedIn = true;
+              break;
+            case "right-tp":
+              movePlayer('-8 0 0')
+              intersectedIn = true;
+              break;
+            case "back-tp":
+              movePlayer('2 0 8')
+              intersectedIn = true;
+              break;
+            case "middle-tp":
+              movePlayer('0 0 0')
+              intersectedIn = true;
+              break;
 
-    init: function () {
-        this.el.addEventListener('click', function () {
-            var sun = document.getElementById('enviro');
-            var currentValue = sun.getAttribute("environment", "lightPosition");
-            if (currentValue.lightPosition.y < 1) {
-                    var y_pos = currentValue.lightPosition.y + 0.1;
-                    sun.setAttribute("environment", "lightPosition", "1 " + y_pos + " 0");
-            } else {
-                sun.setAttribute("environment", "lightPosition", "1 0 0");
-            }
-        });
-    }
+              ....
+
+
+            default:
+          }
+        }
+      }, 1500)
+    });
+  }
 });
 ```
 
 ```
-<a-entity class="clickable" geometry="height: 1; depth: 1; width: 1" position="-10 1 13" scale="0.5 0.5 0.5" nite-nite=""
-          material="color=#f35169">
-    <a-animation attribute="rotation"
-                from="45 0 45"
-                dur="3000"
-                to="45 360 45"
-                repeat="indefinite"
-                easing="linear"></a-animation>
-</a-entity>
+<!-- (TELEPORT PADS) -->
+<a-plane position="-9.962 1.699 1.832" rotation="0 90 0" class="teleporter" id="right-tp" collider-check src="./assets/images/poster1.jpg"></a-plane>
+<a-plane position="9.962 1.699 1.832" rotation="0 -90 0" class="teleporter" id="left-tp" collider-check src="./assets/images/poster2.jpg"></a-plane>
+<a-plane position="-4.005 1.699 -9.931" class="teleporter" id="top-tp" collider-check src="./assets/images/poster3.jpg"></a-plane>
+<a-plane position="3.750 1.5 9.969" rotation="0 180 0" class="teleporter" id="back-tp" collider-check src="./assets/images/poster4.jpg"></a-plane>
 ```
 
 #### Garage Door
