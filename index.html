@@ -231,172 +231,172 @@
         this.el.setObject3D('light', new THREE.PointLight());
       }
     });
-    // AFRAME.registerComponent('collider-check', {
-    //   init: async function() {
-    //     this.el.addEventListener("raycaster-intersected", evt => {
-    //       this.intersectingRaycaster = evt.detail.el.components.raycaster;
-    //       setTimeout(() => {
-    //         if (this.intersectingRaycaster != null && sceenLoaded && !intersectedIn) {
-    //           switch (evt.srcElement.id) {
-    //             case "top-tp":
-    //               movePlayer('0 0 -8')
-    //               intersectedIn = true;
-    //               break;
-    //             case "left-tp":
-    //               movePlayer('8 0 2')
-    //               intersectedIn = true;
-    //               break;
-    //             case "right-tp":
-    //               movePlayer('-8 0 0')
-    //               intersectedIn = true;
-    //               break;
-    //             case "back-tp":
-    //               movePlayer('2 0 8')
-    //               intersectedIn = true;
-    //               break;
-    //             case "middle-tp":
-    //               movePlayer('0 0 0')
-    //               intersectedIn = true;
-    //               break;
-    //             case "desk-lamp-base":
-    //               evt.srcElement.active = !evt.srcElement.active;
-    //               let light = document.querySelector('#desk-lamp-light')
-    //               let lightR = document.querySelector('#desk-lamp-light-real')
-    //               if (evt.srcElement.active) {
-    //                 lightActiveStatus = evt.srcElement.active;
-    //                 light.setAttribute('color', '#fffa61');
-    //                 lightR.setAttribute('intensity', .5);
-    //                 lightR.setAttribute('color', '#fffa61');
-    //               } else {
-    //                 lightActiveStatus = evt.srcElement.active;
-    //                 light.setAttribute('color', '#fff');
-    //                 lightR.setAttribute('intensity', 0);
-    //               }
-    //               intersectedIn = true;
-    //               break;
-    //             case "controller":
-    //               let car = document.querySelector('#car')
-    //               if (!evt.srcElement.active) {
-    //                 evt.srcElement.active = true;
-    //                 car.setAttribute('animation', 'property:position; to: 4 .075 -2.569; dur: 2000; easing: linear;')
-    //               }
-    //               setTimeout(function() {
-    //                 car.setAttribute('animation', 'property:rotation; to: 0 270 0; dur: 2000; easing: linear;')
-    //                 setTimeout(function() {
-    //                   car.setAttribute('animation', 'property:position; to: 1 .075 -2.569; dur: 2000; easing: linear;')
-    //                   setTimeout(function() {
-    //                     car.setAttribute('animation', 'property:rotation; to: 0 90 0; dur: 2000; easing: linear;')
-    //                     evt.srcElement.active = false;
-    //                   }, 2000)
-    //                 }, 2000)
-    //               }, 2000)
-    //               intersectedIn = true;
-    //               break;
-    //             case "light-color-red":
-    //               if (lightActiveStatus) {
-    //                 let light = document.querySelector('#desk-lamp-light')
-    //                 let lightR = document.querySelector('#desk-lamp-light-real')
-    //                 light.setAttribute('color', '#ff0000')
-    //                 lightR.setAttribute('color', '#ff0000')
-    //               }
-    //               intersectedIn = true;
-    //               break;
-    //             case "light-color-green":
-    //               if (lightActiveStatus) {
-    //                 let light = document.querySelector('#desk-lamp-light')
-    //                 let lightR = document.querySelector('#desk-lamp-light-real')
-    //                 light.setAttribute('color', '#11ff00')
-    //                 lightR.setAttribute('color', '#11ff00')
-    //               }
-    //               intersectedIn = true;
-    //               break;
-    //             case "light-color-blue":
-    //               if (lightActiveStatus) {
-    //                 let light = document.querySelector('#desk-lamp-light')
-    //                 let lightR = document.querySelector('#desk-lamp-light-real')
-    //                 light.setAttribute('color', '#0008ff')
-    //                 lightR.setAttribute('color', '#0008ff')
-    //               }
-    //               intersectedIn = true;
-    //               break;
-    //             case "covid-mode":
-    //               let covidmode = document.querySelector('#covid-mode-scene');
-    //               let covidmodeButton = document.querySelector('#covid-mode');
-    //               evt.srcElement.active = !evt.srcElement.active;
-    //               if (evt.srcElement.active) {
-    //                 covidmode.setAttribute('visible', true);
-    //                 covidmodeButton.setAttribute('color', '#11ff00')
-    //               } else {
-    //                 covidmode.setAttribute('visible', false);
-    //                 covidmodeButton.setAttribute('color', '#ff0000')
-    //               }
-    //               intersectedIn = true;
-    //               break;
-    //             default:
-    //           }
-    //         }
-    //       }, 1500)
-    //     });
-    //     this.el.addEventListener("raycaster-intersected-cleared", () => {
-    //       this.intersectingRaycaster = null;
-    //       intersectedIn = false;
-    //     });
-    //   }
-    // });
-    //
-    //
-    // AFRAME.registerComponent('moveable-check', {
-    //   init: async function() {
-    //     this.el.addEventListener("raycaster-intersected", evt => {
-    //       if(!cursorIn) {
-    //         let cursor = document.querySelector("#cursor");
-    //         cursorIn = true;
-    //         this.intersectingRaycaster = evt.detail.el.components.raycaster;
-    //             boxMoveable = true;
-    //             setTimeout(function(){
-    //               boxMoveable = false;
-    //             },3000)
-    //             setTimeout(function(){
-    //               cursorIn = false;
-    //             },5000)
-    //       }
-    //     });
-    //     this.el.addEventListener("raycaster-intersected-cleared", () => {
-    //       this.intersectingRaycaster = null;
-    //       intersectedIn = false;
-    //     });
-    //   },
-    //   tick: async function() {
-    //     let cursor = document.querySelector("#cursor");
-    //     let box1 = document.querySelector("#moveablebox1");
-    //       if(boxMoveable) {
-    //         box1.setAttribute('position', cursor.object3D.getWorldPosition(wpVector).x +" "+  (cursor.object3D.getWorldPosition(wpVector).y) +" "+ (cursor.object3D.getWorldPosition(wpVector).z))
-    //         cursorLastKnownX = cursor.object3D.getWorldPosition(wpVector).x;
-    //         cursorLastKnownY = cursor.object3D.getWorldPosition(wpVector).y;
-    //         cursorLastKnownZ = cursor.object3D.getWorldPosition(wpVector).z;
-    //       } else {
-    //         if(cursorLastKnownY > 0.050) {
-    //           cursorLastKnownY = cursorLastKnownY -.02;
-    //           box1.setAttribute('position', cursorLastKnownX + " " + cursorLastKnownY + " " + cursorLastKnownZ);
-    //         }
-    //       }
-    //   }
-    //
-    // });
-    //
-    // AFRAME.registerComponent('sound-check', {
-    //   init: async function() {
-    //     this.el.addEventListener("raycaster-intersected", evt => {
-    //       this.intersectingRaycaster = evt.detail.el.components.raycaster;
-    //           let guitar = document.querySelector('[sound]');
-    //           guitar.components.sound.playSound();
-    //     });
-    //     this.el.addEventListener("raycaster-intersected-cleared", () => {
-    //       this.intersectingRaycaster = null;
-    //       intersectedIn = false;
-    //     });
-    //   }
-    // });
+    AFRAME.registerComponent('collider-check', {
+      init: async function() {
+        this.el.addEventListener("raycaster-intersected", evt => {
+          this.intersectingRaycaster = evt.detail.el.components.raycaster;
+          setTimeout(() => {
+            if (this.intersectingRaycaster != null && sceenLoaded && !intersectedIn) {
+              switch (evt.srcElement.id) {
+                case "top-tp":
+                  movePlayer('0 0 -8')
+                  intersectedIn = true;
+                  break;
+                case "left-tp":
+                  movePlayer('8 0 2')
+                  intersectedIn = true;
+                  break;
+                case "right-tp":
+                  movePlayer('-8 0 0')
+                  intersectedIn = true;
+                  break;
+                case "back-tp":
+                  movePlayer('2 0 8')
+                  intersectedIn = true;
+                  break;
+                case "middle-tp":
+                  movePlayer('0 0 0')
+                  intersectedIn = true;
+                  break;
+                case "desk-lamp-base":
+                  evt.srcElement.active = !evt.srcElement.active;
+                  let light = document.querySelector('#desk-lamp-light')
+                  let lightR = document.querySelector('#desk-lamp-light-real')
+                  if (evt.srcElement.active) {
+                    lightActiveStatus = evt.srcElement.active;
+                    light.setAttribute('color', '#fffa61');
+                    lightR.setAttribute('intensity', .5);
+                    lightR.setAttribute('color', '#fffa61');
+                  } else {
+                    lightActiveStatus = evt.srcElement.active;
+                    light.setAttribute('color', '#fff');
+                    lightR.setAttribute('intensity', 0);
+                  }
+                  intersectedIn = true;
+                  break;
+                case "controller":
+                  let car = document.querySelector('#car')
+                  if (!evt.srcElement.active) {
+                    evt.srcElement.active = true;
+                    car.setAttribute('animation', 'property:position; to: 4 .075 -2.569; dur: 2000; easing: linear;')
+                  }
+                  setTimeout(function() {
+                    car.setAttribute('animation', 'property:rotation; to: 0 270 0; dur: 2000; easing: linear;')
+                    setTimeout(function() {
+                      car.setAttribute('animation', 'property:position; to: 1 .075 -2.569; dur: 2000; easing: linear;')
+                      setTimeout(function() {
+                        car.setAttribute('animation', 'property:rotation; to: 0 90 0; dur: 2000; easing: linear;')
+                        evt.srcElement.active = false;
+                      }, 2000)
+                    }, 2000)
+                  }, 2000)
+                  intersectedIn = true;
+                  break;
+                case "light-color-red":
+                  if (lightActiveStatus) {
+                    let light = document.querySelector('#desk-lamp-light')
+                    let lightR = document.querySelector('#desk-lamp-light-real')
+                    light.setAttribute('color', '#ff0000')
+                    lightR.setAttribute('color', '#ff0000')
+                  }
+                  intersectedIn = true;
+                  break;
+                case "light-color-green":
+                  if (lightActiveStatus) {
+                    let light = document.querySelector('#desk-lamp-light')
+                    let lightR = document.querySelector('#desk-lamp-light-real')
+                    light.setAttribute('color', '#11ff00')
+                    lightR.setAttribute('color', '#11ff00')
+                  }
+                  intersectedIn = true;
+                  break;
+                case "light-color-blue":
+                  if (lightActiveStatus) {
+                    let light = document.querySelector('#desk-lamp-light')
+                    let lightR = document.querySelector('#desk-lamp-light-real')
+                    light.setAttribute('color', '#0008ff')
+                    lightR.setAttribute('color', '#0008ff')
+                  }
+                  intersectedIn = true;
+                  break;
+                case "covid-mode":
+                  let covidmode = document.querySelector('#covid-mode-scene');
+                  let covidmodeButton = document.querySelector('#covid-mode');
+                  evt.srcElement.active = !evt.srcElement.active;
+                  if (evt.srcElement.active) {
+                    covidmode.setAttribute('visible', true);
+                    covidmodeButton.setAttribute('color', '#11ff00')
+                  } else {
+                    covidmode.setAttribute('visible', false);
+                    covidmodeButton.setAttribute('color', '#ff0000')
+                  }
+                  intersectedIn = true;
+                  break;
+                default:
+              }
+            }
+          }, 1500)
+        });
+        this.el.addEventListener("raycaster-intersected-cleared", () => {
+          this.intersectingRaycaster = null;
+          intersectedIn = false;
+        });
+      }
+    });
+
+
+    AFRAME.registerComponent('moveable-check', {
+      init: async function() {
+        this.el.addEventListener("raycaster-intersected", evt => {
+          if(!cursorIn) {
+            let cursor = document.querySelector("#cursor");
+            cursorIn = true;
+            this.intersectingRaycaster = evt.detail.el.components.raycaster;
+                boxMoveable = true;
+                setTimeout(function(){
+                  boxMoveable = false;
+                },3000)
+                setTimeout(function(){
+                  cursorIn = false;
+                },5000)
+          }
+        });
+        this.el.addEventListener("raycaster-intersected-cleared", () => {
+          this.intersectingRaycaster = null;
+          intersectedIn = false;
+        });
+      },
+      tick: async function() {
+        let cursor = document.querySelector("#cursor");
+        let box1 = document.querySelector("#moveablebox1");
+          if(boxMoveable) {
+            box1.setAttribute('position', cursor.object3D.getWorldPosition(wpVector).x +" "+  (cursor.object3D.getWorldPosition(wpVector).y) +" "+ (cursor.object3D.getWorldPosition(wpVector).z))
+            cursorLastKnownX = cursor.object3D.getWorldPosition(wpVector).x;
+            cursorLastKnownY = cursor.object3D.getWorldPosition(wpVector).y;
+            cursorLastKnownZ = cursor.object3D.getWorldPosition(wpVector).z;
+          } else {
+            if(cursorLastKnownY > 0.050) {
+              cursorLastKnownY = cursorLastKnownY -.02;
+              box1.setAttribute('position', cursorLastKnownX + " " + cursorLastKnownY + " " + cursorLastKnownZ);
+            }
+          }
+      }
+
+    });
+
+    AFRAME.registerComponent('sound-check', {
+      init: async function() {
+        this.el.addEventListener("raycaster-intersected", evt => {
+          this.intersectingRaycaster = evt.detail.el.components.raycaster;
+              let guitar = document.querySelector('[sound]');
+              guitar.components.sound.playSound();
+        });
+        this.el.addEventListener("raycaster-intersected-cleared", () => {
+          this.intersectingRaycaster = null;
+          intersectedIn = false;
+        });
+      }
+    });
     var map = {
       "data": [
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
