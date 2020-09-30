@@ -72,9 +72,9 @@ function movePlayer(position) {
 When you hover your cursor over the remote control in the middle of the scene it will trigger the truck to move to the right then back to its original position.
 
 Base:
-![Truck base position](car.JPG)
+![Truck base position](./ReadMeAssets/car.JPG)
 Active:
-![Truck moving after activiation](driving.JPG)
+![Truck moving after activiation](./ReadMeAssets/driving.JPG)
 ```
 AFRAME.registerComponent('collider-check', {
   init: async function() {
