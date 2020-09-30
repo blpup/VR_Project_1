@@ -190,11 +190,11 @@ AFRAME.registerComponent('collider-check', {
 While the lamp is on and you look at the colors on the button box, you can change the color of the lamp.
 
 Blue Switch: <br/>
-![Lamp off](./ReadMeAssets/blue.JPG)<br/>
+![Blue light](./ReadMeAssets/blue.JPG)<br/>
 Green switch: <br/>
-![Lamp on](./ReadMeAssets/green.JPG)<br/>
+![Green light](./ReadMeAssets/green.JPG)<br/>
 Red switch: <br/>
-![Lamp on](./ReadMeAssets/red.JPG)<br/>
+![Red light](./ReadMeAssets/red.JPG)<br/>
 ```
 AFRAME.registerComponent('collider-check', {
   init: async function() {
@@ -253,6 +253,33 @@ AFRAME.registerComponent('collider-check', {
   <a-box scale=".1 .1 .1" position="-.130 .026 0" color="#0008ff" collider-check id="light-color-blue" class="lighting"></a-box>
 </a-entity>
 <!-- Self Created Model #6  END-->
+```
+
+#### Guitar
+
+If you are using this on your browser on your desktop, and hover over the guitar you can hear a guitar sound playing. Why can't you hear it on your phone? Because of the IOS privacy settings it has made it harder to make sounds play automatically and requires more steps. If I had extra time, I probably could have figured something out and worked out the kinks. However, now it only plays on desktop. (Maybe Andriod? I don't know I don't own one.)
+
+Guitar: <br/>
+![Guitar](./ReadMeAssets/guitar.JPG)<br/>
+
+```
+AFRAME.registerComponent('sound-check', {
+  init: async function() {
+    this.el.addEventListener("raycaster-intersected", evt => {
+      this.intersectingRaycaster = evt.detail.el.components.raycaster;
+          let guitar = document.querySelector('[sound]');
+          guitar.components.sound.playSound();
+    });
+    this.el.addEventListener("raycaster-intersected-cleared", () => {
+      this.intersectingRaycaster = null;
+      intersectedIn = false;
+    });
+  }
+});
+```
+```
+<!-- Model #5  GUITAR -->
+<a-gltf-model position="-1.874 .750 -9.876" scale=".1 .1 .1" rotation="80 0 0" src="#guitar" sound-check sound="src: ./assets/sound/acoustic.mp3; autoplay: false" id="guitar" class="sound"></a-gltf-model>
 ```
 ## Sources
 
