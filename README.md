@@ -445,6 +445,16 @@ AFRAME.registerComponent('collider-check', {
 * Window - https://sketchfab.com/models/ce64c54fc8fb443c8135ac2caa2e9243
 * Box - https://sketchfab.com/models/0641e66ea33c415694cf84f786178960
 
+
+7 Unique Custom made models were used in building this project.
+* Table
+* Chair
+* Sofa
+* Lamp
+* Door
+* Color Board Buttons
+* Covid Mode Button
+
 ### Textures
 
 * Pizza Hut Box - https://live.staticflickr.com/1156/5149222704_75099d2392_n.jpg
