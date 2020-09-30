@@ -44,8 +44,7 @@ AFRAME.registerComponent('collider-check', {
               intersectedIn = true;
               break;
 
-              ....
-
+              ...CODE...
 
             default:
           }
@@ -54,6 +53,10 @@ AFRAME.registerComponent('collider-check', {
     });
   }
 });
+
+function movePlayer(position) {
+  player.setAttribute("position", position);
+}
 ```
 
 ```
@@ -64,21 +67,63 @@ AFRAME.registerComponent('collider-check', {
 <a-plane position="3.750 1.5 9.969" rotation="0 180 0" class="teleporter" id="back-tp" collider-check src="./assets/images/poster4.jpg"></a-plane>
 ```
 
-#### Garage Door
+#### Moving Truck
 
-The garage door opens/closed when clicked. This is done by changing position and rotation at the same time.
+When you hover your cursor over the remote control in the middle of the scene it will trigger the truck to move to the right then back to its original position.
 
-![Garage door gif](https://via.placeholder.com/150)
+Base:
+![Truck base position](car.JPG)
+Active:
+![Truck moving after activiation](driving.JPG)
+```
+AFRAME.registerComponent('collider-check', {
+  init: async function() {
+    this.el.addEventListener("raycaster-intersected", evt => {
+      this.intersectingRaycaster = evt.detail.el.components.raycaster;
+      setTimeout(() => {
+        if (this.intersectingRaycaster != null && sceenLoaded && !intersectedIn) {
+          switch (evt.srcElement.id) {
+
+            ...CODE...
+
+            case "controller":
+              let car = document.querySelector('#car')
+              if (!evt.srcElement.active) {
+                evt.srcElement.active = true;
+                car.setAttribute('animation', 'property:position; to: 4 .075 -2.569; dur: 2000; easing: linear;')
+              }
+              setTimeout(function() {
+                car.setAttribute('animation', 'property:rotation; to: 0 270 0; dur: 2000; easing: linear;')
+                setTimeout(function() {
+                  car.setAttribute('animation', 'property:position; to: 1 .075 -2.569; dur: 2000; easing: linear;')
+                  setTimeout(function() {
+                    car.setAttribute('animation', 'property:rotation; to: 0 90 0; dur: 2000; easing: linear;')
+                    evt.srcElement.active = false;
+                  }, 2000)
+                }, 2000)
+              }, 2000)
+              intersectedIn = true;
+              break;
+
+              ...CODE...
+
+            default:
+          }
+        }
+      }, 1500)
+    });
+
+  }
+});
+```
 
 ```
-<a-entity id="garage_door" class="clickable" static-body geometry="primitive: box; depth: 0.1; height: 3; width: 4"
-          position="2 1.5 7" rotation="0 0 0" material="shader: standard;
-          roughness: 1; src: url(images/garage_door.jpg); repeat: 1 2">
-    <a-animation begin="click" attribute="position" from="2 1.5 7" to= "2 2.8 7" dur="3000" direction="alternate"></a-animation>
-    <a-animation begin="click" attribute="rotation" from="0 0 0" to= "-90 0 0" dur="3000" direction="alternate"></a-animation>
-</a-entity>
-```
+<!-- Model #10  CAR -->
+<a-gltf-model position="1 .075 -2.569" scale=".1 .1 .1" rotation="0 90 0" src="#carD" id="car"></a-gltf-model>
 
+<!-- Model #11  CONTROLLER -->
+<a-gltf-model position="-.880 .133 -2.488" scale=".001 .001 .001" rotation="-90 0 0" src="#controller" class="controller" id="controller" collider-check active="false"></a-gltf-model>
+```
 #### Earth
 
 The earth is a giant Collada model which rotates in its own axis by an a-frame animation element.
