@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Hello, World! - A-Frame</title>
-  <meta name="description" content="Hello, World! - A-Frame">
+  <meta name="description" content="Arthur Jones Project 1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <script src="./assets/js/aframe.js"></script>
   <script src="./assets/js/aframe-extras.js"></script>
@@ -221,6 +221,11 @@
     let sceenLoaded = false;
     let intersectedIn = false;
     let boxMoveable = false;
+    var wpVector = new THREE.Vector3();
+    let cursorLastKnownX = 4.641;
+    let cursorLastKnownY = 0.050;
+    let cursorLastKnownZ = 8.280;
+    let cursorIn = false;
     AFRAME.registerComponent('pointlight', {
       init: function() {
         this.el.setObject3D('light', new THREE.PointLight());
@@ -343,11 +348,18 @@
     AFRAME.registerComponent('moveable-check', {
       init: async function() {
         this.el.addEventListener("raycaster-intersected", evt => {
-          this.intersectingRaycaster = evt.detail.el.components.raycaster;
-              boxMoveable = true;
-              setTimeout(function(){
-                boxMoveable = false;
-              },3000)
+          if(!cursorIn) {
+            let cursor = document.querySelector("#cursor");
+            cursorIn = true;
+            this.intersectingRaycaster = evt.detail.el.components.raycaster;
+                boxMoveable = true;
+                setTimeout(function(){
+                  boxMoveable = false;
+                },3000)
+                setTimeout(function(){
+                  cursorIn = false;
+                },5000)
+          }
         });
         this.el.addEventListener("raycaster-intersected-cleared", () => {
           this.intersectingRaycaster = null;
@@ -357,9 +369,16 @@
       tick: async function() {
         let cursor = document.querySelector("#cursor");
         let box1 = document.querySelector("#moveablebox1");
-        var wpVector = new THREE.Vector3();
           if(boxMoveable) {
             box1.setAttribute('position', cursor.object3D.getWorldPosition(wpVector).x +" "+  (cursor.object3D.getWorldPosition(wpVector).y) +" "+ (cursor.object3D.getWorldPosition(wpVector).z))
+            cursorLastKnownX = cursor.object3D.getWorldPosition(wpVector).x;
+            cursorLastKnownY = cursor.object3D.getWorldPosition(wpVector).y;
+            cursorLastKnownZ = cursor.object3D.getWorldPosition(wpVector).z;
+          } else {
+            if(cursorLastKnownY > 0.050) {
+              cursorLastKnownY = cursorLastKnownY -.02
+              box1.setAttribute('position', cursorLastKnownX + " " + cursorLastKnownY + " " + cursorLastKnownZ);
+            }
           }
       }
 
