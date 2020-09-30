@@ -6,6 +6,11 @@
 
 ### Interactions/Animations
 
+##Instruction Panel
+
+This panel tells the users what they are able to do in the scene and how to do it. So, it is not obscure.
+
+![Poster 5 Screenshot](./ReadMeAssets/teleporter5.JPG)
 #### Teleportation Pads
 
 When you look at a poster on the wall or the instruction panel in the middle of the scene, you will teleport to a location close to that poster.
@@ -14,7 +19,7 @@ When you look at a poster on the wall or the instruction panel in the middle of 
 ![Poster 2 Screenshot](./ReadMeAssets/teleporter2.JPG)
 ![Poster 3 Screenshot](./ReadMeAssets/teleporter3.JPG)
 ![Poster 4 Screenshot](./ReadMeAssets/teleporter4.JPG)
-![Poster 5 Screenshot](./ReadMeAssets/teleporter1.JPG)
+![Poster 5 Screenshot](./ReadMeAssets/teleporter5.JPG)
 ```
 AFRAME.registerComponent('collider-check', {
   init: async function() {
