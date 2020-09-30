@@ -348,18 +348,23 @@
     AFRAME.registerComponent('moveable-check', {
       init: async function() {
         this.el.addEventListener("raycaster-intersected", evt => {
-          if(!cursorIn) {
-            let cursor = document.querySelector("#cursor");
-            cursorIn = true;
-            this.intersectingRaycaster = evt.detail.el.components.raycaster;
+          this.intersectingRaycaster = evt.detail.el.components.raycaster;
+          setTimeout(() => {
+            if (this.intersectingRaycaster != null && sceenLoaded && !intersectedIn) {
+              if (!cursorIn) {
+                let cursor = document.querySelector("#cursor");
+                cursorIn = true;
                 boxMoveable = true;
-                setTimeout(function(){
+                setTimeout(function() {
                   boxMoveable = false;
-                },3000)
-                setTimeout(function(){
+                }, 3000)
+                setTimeout(function() {
                   cursorIn = false;
-                },5000)
-          }
+                }, 5000)
+                intersectedIn = true;
+              }
+            }
+          }, 1500)
         });
         this.el.addEventListener("raycaster-intersected-cleared", () => {
           this.intersectingRaycaster = null;
@@ -369,17 +374,17 @@
       tick: async function() {
         let cursor = document.querySelector("#cursor");
         let box1 = document.querySelector("#moveablebox1");
-          if(boxMoveable) {
-            box1.setAttribute('position', cursor.object3D.getWorldPosition(wpVector).x +" "+  (cursor.object3D.getWorldPosition(wpVector).y) +" "+ (cursor.object3D.getWorldPosition(wpVector).z))
-            cursorLastKnownX = cursor.object3D.getWorldPosition(wpVector).x;
-            cursorLastKnownY = cursor.object3D.getWorldPosition(wpVector).y;
-            cursorLastKnownZ = cursor.object3D.getWorldPosition(wpVector).z;
-          } else {
-            if(cursorLastKnownY > 0.050) {
-              cursorLastKnownY = cursorLastKnownY -.02;
-              box1.setAttribute('position', cursorLastKnownX + " " + cursorLastKnownY + " " + cursorLastKnownZ);
-            }
+        if (boxMoveable) {
+          box1.setAttribute('position', cursor.object3D.getWorldPosition(wpVector).x + " " + (cursor.object3D.getWorldPosition(wpVector).y) + " " + (cursor.object3D.getWorldPosition(wpVector).z))
+          cursorLastKnownX = cursor.object3D.getWorldPosition(wpVector).x;
+          cursorLastKnownY = cursor.object3D.getWorldPosition(wpVector).y;
+          cursorLastKnownZ = cursor.object3D.getWorldPosition(wpVector).z;
+        } else {
+          if (cursorLastKnownY > 0.050) {
+            cursorLastKnownY = cursorLastKnownY - .02;
+            box1.setAttribute('position', cursorLastKnownX + " " + cursorLastKnownY + " " + cursorLastKnownZ);
           }
+        }
       }
 
     });
@@ -388,8 +393,16 @@
       init: async function() {
         this.el.addEventListener("raycaster-intersected", evt => {
           this.intersectingRaycaster = evt.detail.el.components.raycaster;
-              let guitar = document.querySelector('[sound]');
-              guitar.components.sound.playSound();
+          setTimeout(() => {
+            if (this.intersectingRaycaster != null && sceenLoaded && !intersectedIn) {
+              if (evt.srcElement.id == "guitar") {
+                let guitar = document.querySelector('[sound]');
+                guitar.components.sound.playSound();
+                intersectedIn = true;
+              }
+
+            }
+          }, 1500)
         });
         this.el.addEventListener("raycaster-intersected-cleared", () => {
           this.intersectingRaycaster = null;

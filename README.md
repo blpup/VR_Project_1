@@ -2,15 +2,16 @@
 
 ## My home
 
-![Main Screenshot](./ReadMeAssets/main.jpg)
+### Video
+[![Main Screenshot and video](./ReadMeAssets/main.jpg)](https://youtu.be/nHF2N1Vu8Pc)
 
 ### Instruction Panel
 
 This panel tells the users what they are able to do in the scene and how to do it. So, it is not obscure.
+![Poster 5 Screenshot](./ReadMeAssets/teleporter5.JPG)
 
 ### Interactions/Animations
 
-![Poster 5 Screenshot](./ReadMeAssets/teleporter5.JPG)
 #### Teleportation Pads
 
 When you look at a poster on the wall or the instruction panel in the middle of the scene, you will teleport to a location close to that poster.
