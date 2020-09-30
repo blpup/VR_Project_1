@@ -124,18 +124,136 @@ AFRAME.registerComponent('collider-check', {
 <!-- Model #11  CONTROLLER -->
 <a-gltf-model position="-.880 .133 -2.488" scale=".001 .001 .001" rotation="-90 0 0" src="#controller" class="controller" id="controller" collider-check active="false"></a-gltf-model>
 ```
-#### Earth
+#### Lamp
 
-The earth is a giant Collada model which rotates in its own axis by an a-frame animation element.
+If you look at the switch on the lamp you can turn off and on the lamp.
 
-![Rotating earth](https://via.placeholder.com/150)
+Base: <br/>
+![Lamp off](./ReadMeAssets/lamp.JPG)<br/>
+Active: <br/>
+![Lamp on](./ReadMeAssets/lamp2.JPG)<br/>
 
 ```
-<a-entity collada-model="#planet" rotation="45 0 45" position="70 150 -100" scale="80 80 80">
-	<a-animation attribute="rotation" from="45 0 45" dur="200000" to="45 360 45" repeat="indefinite" easing="linear"></a-animation>
+AFRAME.registerComponent('collider-check', {
+  init: async function() {
+    this.el.addEventListener("raycaster-intersected", evt => {
+      this.intersectingRaycaster = evt.detail.el.components.raycaster;
+      setTimeout(() => {
+        if (this.intersectingRaycaster != null && sceenLoaded && !intersectedIn) {
+          switch (evt.srcElement.id) {
+
+            ...CODE...
+
+            case "desk-lamp-base":
+              evt.srcElement.active = !evt.srcElement.active;
+              let light = document.querySelector('#desk-lamp-light')
+              let lightR = document.querySelector('#desk-lamp-light-real')
+              if (evt.srcElement.active) {
+                lightActiveStatus = evt.srcElement.active;
+                light.setAttribute('color', '#fffa61');
+                lightR.setAttribute('intensity', .5);
+                lightR.setAttribute('color', '#fffa61');
+              } else {
+                lightActiveStatus = evt.srcElement.active;
+                light.setAttribute('color', '#fff');
+                lightR.setAttribute('intensity', 0);
+              }
+              intersectedIn = true;
+              break;
+
+              ...CODE...
+
+            default:
+          }
+        }
+      }, 1500)
+    });
+
+  }
+});
+```
+```
+<!-- Self Created Model #4  LAMP-->
+<a-entity position="8.8 1.06 .4" rotation="0 45 0" collider-check id="desek-lamp" active="false">
+  <a-sphere scale=".14 .14 .14" position="-.17 .581 .002" color="#515336"></a-sphere>
+  <a-sphere scale=".15 .15 .15" position="-0.19 .581 .002" id="desk-lamp-light"></a-sphere>
+  <a-box scale=".05 .03 .05" position="-.051 .161 -.009" id="desk-lamp-light" color="#000"></a-box>
+  <a-cylinder scale=".1 .05 .1" position="0 .14 0" id="desk-lamp-base" class="lighting"></a-cylinder>
+  <a-cylinder scale=".01 .05 .01" position="-.02 .58 0" rotation="90 90" color="#515336"></a-cylinder>
+  <a-cylinder scale=".01 .5 .01" position="0 0.4 0" color="#515336"></a-cylinder>
+  <a-light type="hemisphere" color="#fffa61" position="-0.19 .581 .002" id="desk-lamp-light-real" intensity=0></a-light>
 </a-entity>
+<!-- Self Created Model #4  END-->
 ```
+#### Color Light Buttons
 
+While the lamp is on and you look at the colors on the button box, you can change the color of the lamp.
+
+Blue Switch: <br/>
+![Lamp off](./ReadMeAssets/blue.JPG)<br/>
+Green switch: <br/>
+![Lamp on](./ReadMeAssets/green.JPG)<br/>
+Red switch: <br/>
+![Lamp on](./ReadMeAssets/red.JPG)<br/>
+```
+AFRAME.registerComponent('collider-check', {
+  init: async function() {
+    this.el.addEventListener("raycaster-intersected", evt => {
+      this.intersectingRaycaster = evt.detail.el.components.raycaster;
+      setTimeout(() => {
+        if (this.intersectingRaycaster != null && sceenLoaded && !intersectedIn) {
+          switch (evt.srcElement.id) {
+
+            ..CODE...
+
+            case "light-color-red":
+              if (lightActiveStatus) {
+                let light = document.querySelector('#desk-lamp-light')
+                let lightR = document.querySelector('#desk-lamp-light-real')
+                light.setAttribute('color', '#ff0000')
+                lightR.setAttribute('color', '#ff0000')
+              }
+              intersectedIn = true;
+              break;
+            case "light-color-green":
+              if (lightActiveStatus) {
+                let light = document.querySelector('#desk-lamp-light')
+                let lightR = document.querySelector('#desk-lamp-light-real')
+                light.setAttribute('color', '#11ff00')
+                lightR.setAttribute('color', '#11ff00')
+              }
+              intersectedIn = true;
+              break;
+            case "light-color-blue":
+              if (lightActiveStatus) {
+                let light = document.querySelector('#desk-lamp-light')
+                let lightR = document.querySelector('#desk-lamp-light-real')
+                light.setAttribute('color', '#0008ff')
+                lightR.setAttribute('color', '#0008ff')
+              }
+              intersectedIn = true;
+              break;
+
+              ..CODE...
+
+            default:
+          }
+        }
+      }, 1500)
+    });
+  }
+});
+```
+```
+<!-- Self Created Model #6  COLOR BOARD-->
+<a-entity position="10 1.713 1.109" rotation="0 0 90">
+  <a-box scale=".5 .05 .3" position="0" color="#6e6e6e"></a-box>
+  <a-box scale=".1 .1 .1" position=".175 .026 0" color="#ff0000" collider-check id="light-color-red" class="lighting"></a-box>
+  <a-box scale=".1 .1 .1" position=".026 .026 0" color="#11ff00" collider-check id="light-color-green" class="lighting"></a-box>
+  <a-box scale=".1 .1 .1" position="-.130 .026 0" color="#0008ff" collider-check id="light-color-blue" class="lighting"></a-box>
+</a-entity>
+<!-- Self Created Model #6  END-->
+```
 ## Sources
 
 ### Models
