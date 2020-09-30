@@ -6,7 +6,7 @@
 
 ### Interactions/Animations
 
-##Instruction Panel
+## Instruction Panel
 
 This panel tells the users what they are able to do in the scene and how to do it. So, it is not obscure.
 
