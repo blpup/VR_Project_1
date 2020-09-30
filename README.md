@@ -320,6 +320,109 @@ AFRAME.registerComponent('moveable-check', {
 <!-- Model #12 AMAZON BOX -->
 <a-gltf-model position="4.641 0.050 8.280" scale=".02 .02 .02" rotation="0 90 0" src="#box" moveable-check id="moveablebox1" class="moveable"></a-gltf-model>
 ```
+
+#### COVID-19 Mode
+
+The button labeled covid mode will toggle covid mode on and off.
+The differences is that there's a lot more Amazon boxes and Pizza boxes. Also, tape around the door meaning the person can not go outside.
+The reason behind this is because during COVID I've eaten/ordered a lot of pizza and ordered a lot from Amazon. Also I haven't been outside for awhile now.
+
+Button Base: <br/>
+![Button Base](./ReadMeAssets/covidbutton.JPG)<br/>
+Button Active: <br/>
+![Button Active](./ReadMeAssets/covidbutton2.JPG)<br/>
+
+COVD-19 Mode OFF: <br/>
+![COVD-19 Mode OFF](./ReadMeAssets/covidoff.JPG)<br/>
+COVD-19 Mode ON: <br/>
+![COVD-19 Mode ON](./ReadMeAssets/covidon.JPG)<br/>
+```
+AFRAME.registerComponent('collider-check', {
+  init: async function() {
+    this.el.addEventListener("raycaster-intersected", evt => {
+      this.intersectingRaycaster = evt.detail.el.components.raycaster;
+      setTimeout(() => {
+        if (this.intersectingRaycaster != null && sceenLoaded && !intersectedIn) {
+          switch (evt.srcElement.id) {
+
+            ..CODE...
+
+            case "covid-mode":
+              let covidmode = document.querySelector('#covid-mode-scene');
+              let covidmodeButton = document.querySelector('#covid-mode');
+              evt.srcElement.active = !evt.srcElement.active;
+              if (evt.srcElement.active) {
+                covidmode.setAttribute('visible', true);
+                covidmodeButton.setAttribute('color', '#11ff00')
+              } else {
+                covidmode.setAttribute('visible', false);
+                covidmodeButton.setAttribute('color', '#ff0000')
+              }
+              intersectedIn = true;
+              break;
+
+              ..CODE...
+            default:
+          }
+        }
+      }, 1500)
+    });
+
+  }
+});
+```
+```
+<!-- Self Created Model #6  COVID MODE-->
+<a-entity position="10 1.713 2.592" rotation="0 0 90">
+  <a-plane position=".177 .006 .007" rotation="-90 -90 0" scale=".3 .1 1" src="./assets/images/covid.jpg"></a-plane>
+  <a-box scale=".2 .05 .2" position="" color="#6e6e6e"></a-box>
+  <a-box scale=".1 .1 .1" position="0 0 0" color="#ff0000" collider-check id="covid-mode" class="lighting" active="false"></a-box>
+</a-entity>
+
+<a-entity visible="false" id="covid-mode-scene">
+  <a-entity position="0 .06 -4.6" rotation="90 0 180">
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
+  </a-entity>
+
+  <a-entity position=".033 .06 -9.376" rotation="90 0 180">
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
+  </a-entity>
+
+  <a-entity position="7.664 1.229 0.234" rotation="90 0 180">
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
+  </a-entity>
+
+  <a-entity position="-9.121 .06 3.568" rotation="90 0 45">
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
+  </a-entity>
+
+  <a-entity position="3.110 .06 9.234" rotation="90 0 0">
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
+    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
+  </a-entity>
+  <a-entity position="-9.927 1.561 -7.540">
+    <a-box src="#cautiontape" rotation="45 0 90" scale="3 .3 .2"></a-box>
+    <a-box src="#cautiontape" rotation="-45 0 90" scale="3 .3 .2"></a-box>
+  </a-entity>
+
+
+  <a-gltf-model position="-9.279 .075 -9.600" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
+  <a-gltf-model position="-9.279 .808 -9.600" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
+  <a-gltf-model position="-9.279 .075 -8.858" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
+  <a-gltf-model position="-8.544 .075 -9.6" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
+  <a-gltf-model position="-9.279 .808 -8.858" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
+  <a-gltf-model position="-7.802 .075 -9.594" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
+</a-entity>
+```
 ## Sources
 
 ### Models
