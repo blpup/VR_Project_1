@@ -72,7 +72,7 @@
     <a-gltf-model position="9.413 -0.030 -9.302" scale="1 1 1" src="#plant"></a-gltf-model>
 
     <!-- Model #10  CAR -->
-    <a-gltf-model position="1 .075 -2.569" scale=".1 .1 .1" rotation="0 90 0" src="#carA" id="car"></a-gltf-model>
+    <a-gltf-model position="1 .075 -2.569" scale=".05 .05 .05" rotation="0 -90 0" src="#carA" id="car"></a-gltf-model>
 
     <!-- Model #11  CONTROLLER -->
     <a-gltf-model position="-.880 .133 -2.488" scale=".001 .001 .001" rotation="-90 0 0" src="#controller" class="controller" id="controller" collider-check active="false"></a-gltf-model>
@@ -281,11 +281,11 @@
                     car.setAttribute('animation', 'property:position; to: 4 .075 -2.569; dur: 2000; easing: linear;')
                   }
                   setTimeout(function() {
-                    car.setAttribute('animation', 'property:rotation; to: 0 270 0; dur: 2000; easing: linear;')
+                    car.setAttribute('animation', 'property:rotation; to: 0 90 0; dur: 2000; easing: linear;')
                     setTimeout(function() {
                       car.setAttribute('animation', 'property:position; to: 1 .075 -2.569; dur: 2000; easing: linear;')
                       setTimeout(function() {
-                        car.setAttribute('animation', 'property:rotation; to: 0 90 0; dur: 2000; easing: linear;')
+                        car.setAttribute('animation', 'property:rotation; to: 0 -90 0; dur: 2000; easing: linear;')
                         evt.srcElement.active = false;
                       }, 2000)
                     }, 2000)
