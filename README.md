@@ -425,6 +425,10 @@ AFRAME.registerComponent('collider-check', {
 ```
 ## Sources
 
+### Frameworks
+
+* aframe - https://aframe.io/
+* aframe extras - https://github.com/n5ro/aframe-extras
 ### Models
 
 11 unique models were used in building this project.
@@ -444,7 +448,9 @@ AFRAME.registerComponent('collider-check', {
 ### Textures
 
 * Pizza Hut Box - https://live.staticflickr.com/1156/5149222704_75099d2392_n.jpg
-
+* Caution Tape - https://thumbs.dreamstime.com/t/warning-frame-grunge-yellow-black-diagonal-stripes-vector-grunge-texture-warn-caution-construction-safety-background-warning-frame-137272851.jpg
+* Floor/Ceiling - https://www.textures.com/system/gallery/photos/3D%20Scans/125667/3DScans0024_48_download600.jpg
+* Wall - https://www.textures.com/system/gallery/photos/3D%20Scans/132342/3DScans0393_13_download600.jpg
 ### Art
 
 * Painting 1 - https://www.etsy.com/listing/704185211/bold-and-brash-print-poster?gpla=1&gao=1&&utm_source=google&utm_medium=cpc&utm_campaign=shopping_us_ts1-c-art_and_collectibles-prints-digital_prints&utm_custom1=50c105c2-bac8-43c3-b98c-64228306159c&utm_content=go_2063581104_76452839735_367965825297_pla-328046931108_c__704185211&utm_custom2=2063581104&gclid=Cj0KCQjwqrb7BRDlARIsACwGad4Fk2wWWYSh-ry69LsPoFqbqWb43p2p7COnG4MDi7EN5Jy0tLggQaoaAvqjEALw_wcB
