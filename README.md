@@ -2,7 +2,7 @@
 
 ## Moon House
 
-![Main Screenshot](./readMeAssets/main.jpg)
+![Main Screenshot](./ReadMeAssets/main.jpg)
 
 ### Interactions/Animations
 
