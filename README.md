@@ -1,14 +1,14 @@
 # CS 4331 - Project #1
 
-## Moon House
+## My home
 
 ![Main Screenshot](./ReadMeAssets/main.jpg)
 
-### Interactions/Animations
-
-## Instruction Panel
+### Instruction Panel
 
 This panel tells the users what they are able to do in the scene and how to do it. So, it is not obscure.
+
+### Interactions/Animations
 
 ![Poster 5 Screenshot](./ReadMeAssets/teleporter5.JPG)
 #### Teleportation Pads
