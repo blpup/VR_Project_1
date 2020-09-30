@@ -10,11 +10,11 @@
 
 When you look at a poster on the wall or the instruction panel in the middle of the scene, you will teleport to a location close to that poster.
 
-![Poster 1 Screenshot](./ReadMeAssets/teleporter1.jpg)
-![Poster 2 Screenshot](./ReadMeAssets/teleporter2.jpg)
-![Poster 3 Screenshot](./ReadMeAssets/teleporter3.jpg)
-![Poster 4 Screenshot](./ReadMeAssets/teleporter4.jpg)
-![Poster 5 Screenshot](./ReadMeAssets/teleporter1.jpg)
+![Poster 1 Screenshot](./ReadMeAssets/teleporter1.JPG)
+![Poster 2 Screenshot](./ReadMeAssets/teleporter2.JPG)
+![Poster 3 Screenshot](./ReadMeAssets/teleporter3.JPG)
+![Poster 4 Screenshot](./ReadMeAssets/teleporter4.JPG)
+![Poster 5 Screenshot](./ReadMeAssets/teleporter1.JPG)
 ```
 AFRAME.registerComponent('collider-check', {
   init: async function() {
