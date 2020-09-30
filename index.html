@@ -168,7 +168,7 @@
     </a-entity>
     <!-- Self Created Model #7  END-->
 
-    
+
     <a-entity visible="false" id="covid-mode-scene">
       <a-entity position="0 .06 -4.6" rotation="90 0 180">
         <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
@@ -324,21 +324,6 @@
                   } else {
                     covidmode.setAttribute('visible', false);
                     covidmodeButton.setAttribute('color', '#ff0000')
-                  }
-                  intersectedIn = true;
-                  break;
-                case "tvbutton":
-                  let screen = document.querySelector("#screen");
-                  let screenButton = document.querySelector("#tvbutton");
-                  evt.srcElement.active = !evt.srcElement.active;
-                  if (evt.srcElement.active) {
-                    screen.setAttribute('position', '0 0.901 0.126')
-                    screen.setAttribute('src', './assets/videos/video1.mp4');
-                    screenButton.setAttribute('color', '#11ff00');
-                  } else {
-                    //screen.setAttribute('position','0 0.901 0.083')
-                    screen.setAttribute('src', './assets/videos/video2.mp4');
-                    screenButton.setAttribute('color', '#ff0000')
                   }
                   intersectedIn = true;
                   break;
