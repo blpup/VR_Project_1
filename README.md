@@ -281,6 +281,45 @@ AFRAME.registerComponent('sound-check', {
 <!-- Model #5  GUITAR -->
 <a-gltf-model position="-1.874 .750 -9.876" scale=".1 .1 .1" rotation="80 0 0" src="#guitar" sound-check sound="src: ./assets/sound/acoustic.mp3; autoplay: false" id="guitar" class="sound"></a-gltf-model>
 ```
+
+#### Moveable Box
+
+The box near the bed is a moveable object! The object will follow the cursor of the user for about 3 seconds before it lets go of the cursor. To reactive it, just look at it again!
+
+Base: <br/>
+![Moveable box base](./ReadMeAssets/moveablebox.JPG)<br/>
+Active: <br/>
+![Moveable box active](./ReadMeAssets/moveablebox2.JPG)<br/>
+```
+AFRAME.registerComponent('moveable-check', {
+  init: async function() {
+    this.el.addEventListener("raycaster-intersected", evt => {
+      this.intersectingRaycaster = evt.detail.el.components.raycaster;
+          boxMoveable = true;
+          setTimeout(function(){
+            boxMoveable = false;
+          },3000)
+    });
+    this.el.addEventListener("raycaster-intersected-cleared", () => {
+      this.intersectingRaycaster = null;
+      intersectedIn = false;
+    });
+  },
+  tick: async function() {
+    let cursor = document.querySelector("#cursor");
+    let box1 = document.querySelector("#moveablebox1");
+    var wpVector = new THREE.Vector3();
+      if(boxMoveable) {
+        box1.setAttribute('position', cursor.object3D.getWorldPosition(wpVector).x +" "+  (cursor.object3D.getWorldPosition(wpVector).y) +" "+ (cursor.object3D.getWorldPosition(wpVector).z))
+      }
+  }
+
+});
+```
+```
+<!-- Model #12 AMAZON BOX -->
+<a-gltf-model position="4.641 0.050 8.280" scale=".02 .02 .02" rotation="0 90 0" src="#box" moveable-check id="moveablebox1" class="moveable"></a-gltf-model>
+```
 ## Sources
 
 ### Models
