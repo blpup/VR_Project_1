@@ -15,6 +15,7 @@
     <a-assets>
       <img id="texture-floor" src="./assets/images/floor.jpg">
       <img id="texture-wall" src="./assets/images/wall.jpg">
+      <img id="texture-couch" src="./assets/images/couch.jpg">
       <a-asset-item id="lamp1" src="./assets/models/lamp/scene.gltf"></a-asset-item>
       <a-asset-item id="bed" src="./assets/models/bed/scene.gltf"></a-asset-item>
       <a-asset-item id="nightstand" src="./assets/models/night_stand/scene.gltf"></a-asset-item>
@@ -89,7 +90,7 @@
 
     <!-- PLAYER -->
     <a-entity id="player">
-      <a-entity camera look-controls position="0 1.6 0">
+      <a-entity camera look-controls position="0 1.9 0">
         <a-cursor id="cursor" color="white" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
           event-set__mouseenter="_event: mouseenter; color: springgreen" event-set__mouseleave="_event: mouseleave; color: white" raycaster="objects: .teleporter, .lighting, .controller, .moveable, .sound;"></a-cursor>
       </a-entity>
@@ -114,21 +115,32 @@
 
     <!-- Self Created Model #2  CHAIR-->
     <a-entity position="8 0 -2">
-      <a-box scale=".2 .5 .2" position=".5 .3 -.5" color="#563325"></a-box>
-      <a-box scale=".2 .5 .2" position=".5 .3 .5" color="#563325"></a-box>
-      <a-box scale=".2 .5 .2" position="-.5 .3 -.5" color="#563325"></a-box>
-      <a-box scale=".2 .5 .2" position="-.5 .3 .5" color="#563325"></a-box>
-      <a-box scale="1.2 0.1 1.2" position="0 0.59 0" color="#563325"></a-box>
-      <a-box scale="1.2 0.1 1.2" position="0 1.2 -0.55" rotation="90 0 0" color="#563325"></a-box>
+      <a-box scale=".1 .7 .1" position=".4 .3 -.5" color="#392E22"></a-box>
+      <a-box scale=".1 .7 .1" position=".4 .3 .429" color="#392E22"></a-box>
+      <a-box scale=".1 .7 .1" position="-.39 .3 -.526" color="#392E22"></a-box>
+      <a-box scale=".1 .7 .1" position="-.39 .3 .429" color="#392E22"></a-box>
+      <a-box scale=".03 .110 1.030" position="-.425 .656 -.035" color="#392E22"></a-box>
+      <a-box scale=".03 .110 1.030" position=".425 .656 -.035" color="#392E22"></a-box>
+      <a-box scale=".03 .110 .8" position="0 .656 -.553" rotation="0 90 0" color="#392E22"></a-box>
+      <a-box scale=".03 .110 .8" position="0 .649 .461" rotation="0 90 0" color="#392E22"></a-box>
+      <a-box scale="1 .05 .150" position="0 1.820 -0.55" rotation="90 0 0" color="#392E22"></a-box>
+
+      <a-cylinder scale=".390 .950 .130" position="0 0.685 -.025" rotation="90 0 0" color="#A19176"></a-cylinder>
+
+      <a-box scale=".08 .05 1.2" position="0 1.2 -.55" rotation="90 0 0" color="#392E22"></a-box>
+      <a-box scale=".08 .05 1.2" position="-.4 1.2 -.55" rotation="90 0 0" color="#392E22"></a-box>
+      <a-box scale=".08 .05 1.2" position="-.2 1.2 -.55" rotation="90 0 0" color="#392E22"></a-box>
+      <a-box scale=".08 .05 1.2" position=".2 1.2 -.55" rotation="90 0 0" color="#392E22"></a-box>
+      <a-box scale=".08 .05 1.2" position=".4 1.2 -.55" rotation="90 0 0" color="#392E22"></a-box>
     </a-entity>
     <!-- Self Created Model #2  END-->
 
     <!-- Self Created Model #3  SOFA-->
     <a-entity position="0 0 -6">
-      <a-box scale=".2 .5 1" position="-2.4 .84 -.102" color="#787878"></a-box>
-      <a-box scale=".2 .5 1" position="2.4 .84 -0.102" color="#787878"></a-box>
-      <a-box scale="5 .5 1.2" position="0 .35 .0" color="#787878"></a-box>
-      <a-box scale="5 .3 .5" position="0 .84 .45" rotation="90 0 0" color="#262626"></a-box>
+      <a-box scale=".2 .5 1" position="-2.4 .84 -.102"  src="#texture-couch"></a-box>
+      <a-box scale=".2 .5 1" position="2.4 .84 -0.102" src="#texture-couch"></a-box>
+      <a-box scale="5 .5 1.2" position="0 .35 .0" src="#texture-couch"></a-box>
+      <a-box scale="5 .3 .5" position="0 .84 .45" rotation="90 0 0" src="#texture-couch"></a-box>
     </a-entity>
     <!-- Self Created Model #3  END-->
 
