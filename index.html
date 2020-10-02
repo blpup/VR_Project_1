@@ -3224,6 +3224,22 @@
             box1.setAttribute('position', cursorLastKnownX + " " + cursorLastKnownY + " " + cursorLastKnownZ);
           }
         }
+
+        let bottle = document.querySelector("#moveablespray");
+        let camera = document.querySelector("#camera");
+        if (sprayMoveable) {
+          bottle.setAttribute('position', cursor.object3D.getWorldPosition(wpVector).x + " " + (cursor.object3D.getWorldPosition(wpVector).y) + " " + (cursor.object3D.getWorldPosition(wpVector).z))
+          bottle.setAttribute('rotation', "0 " + (camera.object3D.rotation._y * (180 / Math.PI) - 90) + " 0")
+          cursorLastKnownX2 = cursor.object3D.getWorldPosition(wpVector).x;
+          cursorLastKnownY2 = cursor.object3D.getWorldPosition(wpVector).y;
+          cursorLastKnownZ2 = cursor.object3D.getWorldPosition(wpVector).z;
+        } else {
+
+          if (cursorLastKnownY2 > 0.050) {
+            cursorLastKnownY2 = cursorLastKnownY2 - .02;
+            bottle.setAttribute('position', cursorLastKnownX2 + " " + cursorLastKnownY2 + " " + cursorLastKnownZ2);
+          }
+        }
       }
 
     });
@@ -3275,24 +3291,6 @@
           this.intersectingRaycaster = null;
           intersectedIn = false;
         });
-      },
-      tick: async function() {
-        let cursor = document.querySelector("#cursor");
-        let bottle = document.querySelector("#moveablespray");
-        let camera = document.querySelector("#camera");
-        if (sprayMoveable) {
-          bottle.setAttribute('position', cursor.object3D.getWorldPosition(wpVector).x + " " + (cursor.object3D.getWorldPosition(wpVector).y) + " " + (cursor.object3D.getWorldPosition(wpVector).z))
-          bottle.setAttribute('rotation', "0 " + (camera.object3D.rotation._y * (180 / Math.PI) - 90) + " 0")
-          cursorLastKnownX2 = cursor.object3D.getWorldPosition(wpVector).x;
-          cursorLastKnownY2 = cursor.object3D.getWorldPosition(wpVector).y;
-          cursorLastKnownZ2 = cursor.object3D.getWorldPosition(wpVector).z;
-        } else {
-
-          if (cursorLastKnownY2 > 0.050) {
-            cursorLastKnownY2 = cursorLastKnownY2 - .02;
-            bottle.setAttribute('position', cursorLastKnownX2 + " " + cursorLastKnownY2 + " " + cursorLastKnownZ2);
-          }
-        }
       }
 
     });
