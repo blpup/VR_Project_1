@@ -26,7 +26,6 @@
       <a-asset-item id="window" src="./assets/models/window/scene.gltf"></a-asset-item>
       <a-asset-item id="plant" src="./assets/models/plant/scene.gltf"></a-asset-item>
       <a-asset-item id="carA" src="./assets/models/cara/scene.gltf"></a-asset-item>
-      <!-- <a-asset-item id="controller" src="./assets/models/controller/scene.gltf"></a-asset-item> -->
       <a-asset-item id="box" src="./assets/models/box/scene.gltf"></a-asset-item>
       <a-asset-item id="mask" src="./assets/models/mask/scene.gltf"></a-asset-item>
       <a-asset-item id="handsanitizer" src="./assets/models/handsanitizer/scene.gltf"></a-asset-item>
@@ -79,7 +78,7 @@
     <a-gltf-model position="1 .075 -2.569" scale=".05 .05 .05" rotation="0 -90 0" src="#carA" id="car"></a-gltf-model>
 
     <!-- Model #11  CONTROLLER -->
-    <!-- <a-gltf-model position="-.880 .133 -2.488" scale=".001 .001 .001" rotation="-90 0 0" src="#controller" class="controller" id="controller" collider-check active="false"></a-gltf-model> -->
+    <!-- <a-gltf-model  scale=".001 .001 .001" rotation="-90 0 0" src="#controller" ></a-gltf-model> -->
 
     <!-- Model #12 AMAZON BOX -->
     <a-gltf-model position="4.641 0.050 8.280" scale=".02 .02 .02" rotation="0 90 0" src="#box" moveable-check id="moveablebox1" class="moveable"></a-gltf-model>
@@ -143,7 +142,6 @@
       <a-box scale=".2 .5 1" position="-2.4 .84 -.089" src="#texture-couch"></a-box>
       <a-box scale=".2 .5 1" position="2.4 .84 -0.089" src="#texture-couch"></a-box>
       <a-box scale="5 .2 1.2" position="0 .5 .009" src="#texture-couch"></a-box>
-      <!-- <a-cylinder scale="2.480 .280 .5" position="0 .993 .461" rotation="90 0 0" src="#texture-couch"></a-cylinder> -->
       <a-box scale="5 .3 .5" position="0 .84 .45" rotation="90 0 0" src="#texture-couch"></a-box>
 
       <a-box scale=".1 .5 .1" position="2.449 .151 -.546" src="#texture-wood"></a-box>
@@ -194,39 +192,43 @@
     <!-- Self Created Model #7  END-->
 
 
-    <a-entity position="0 .5 0" rotation="0 0 0">
+    <a-entity position="-.880 .133 -2.488">
 
       <!-- Dpad vertical -->
-      <a-box scale=".03 .01 .12"></a-box>
+      <a-box scale=".03 .01 .12" color="#73726D" position="-.218 .014 0"></a-box>
 
       <!-- Dpad horizontal -->
-      <a-box scale=".03 .01 .12" rotation="0 90 0"></a-box>
+      <a-box scale=".03 .01 .12" rotation="0 90 0" color="#73726D" position="-.218 .014 0"></a-box>
 
       <!-- Base -->
-      <a-box scale=".250 .02 .260"></a-box>
-      <a-cylinder scale=".150 .02 .150" color="blue" position="-.186 0 0"></a-cylinder>
-      <a-cylinder scale=".150 .02 .150" color="blue" position=".186 0 0"></a-cylinder>
-      <a-ring scale=".125 .125 1" rotation="-90" color="black" position="-.186 .017 0"></a-ring>
-      <a-ring scale=".125 .125 1" rotation="-90" color="black" position=".186 .017 0"></a-ring>
+      <a-box scale=".250 .02 .230" color="#ECE8DC" class="controller" id="controller" collider-check active="false"></a-box>
+      <a-cylinder scale=".150 .02 .150" color="#ECE8DC" position="-.218 0 0"></a-cylinder>
+      <a-cylinder scale=".150 .02 .150" color="#A0A098" position=".218 0 0"></a-cylinder>
+      <a-ring scale=".125 .125 1" rotation="-90" color="#ECE8DC" position="-.218 .017 0"></a-ring>
+      <a-ring scale=".125 .125 1" rotation="-90" color="#ECE8DC" position=".218 .017 0"></a-ring>
 
       <!-- Blue Button -->
-      <a-sphere rotation="0 -45 0" scale=".03 .01 .03" position=".132 .017 0"></a-sphere>
+      <a-sphere rotation="0 -45 0" scale=".03 .01 .03" color="#468CD4" position=".168 .017 0"></a-sphere>
       <!-- Red Button -->
-      <a-sphere rotation="0 -45 0" scale=".03 .01 .03" position=".194 .017 .052"></a-sphere>
+      <a-sphere rotation="0 -45 0" scale=".03 .01 .03" color="#EE1A19" position=".220 .017 .052"></a-sphere>
       <!-- Green Button -->
-      <a-sphere rotation="0 -45 0" scale=".03 .01 .03" position=".244 .017 -.014"></a-sphere>
+      <a-sphere rotation="0 -45 0" scale=".03 .01 .03" color="#18A968" position=".268 .017 -.014"></a-sphere>
       <!-- Yellow Button -->
-      <a-sphere rotation="0 -45 0" scale=".03 .01 .03" position=".858 .017 -.060"></a-sphere>
+      <a-sphere rotation="0 -45 0" scale=".03 .01 .03" color="#E8DD12" position=".207 .017 -.060"></a-sphere>
 
       <!-- Select -->
-      <a-cylinder rotaion="90 -45 0" scale=".01 .06 .01"></a-cylinder>
-      <a-sphere scale=".011 .011 .011"></a-sphere>
-      <a-sphere scale=".011 .011 .011"></a-sphere>
+      <a-entity rotation="90 -45 0" position=".022 .008 .034">
+        <a-cylinder rotaion="90 -45 0" color="#73726D" scale=".01 .06 .01"></a-cylinder>
+        <a-sphere scale=".011 .011 .011" color="#73726D" position="0 .033 0"></a-sphere>
+        <a-sphere scale=".011 .011 .011" color="#73726D" position="0 -.033 0"></a-sphere>
+      </a-entity>
 
       <!-- Start -->
-      <a-cylinder rotaion="90 -45 0" scale=".01 .06 .01"></a-cylinder>
-      <a-sphere scale=".011 .011 .011"></a-sphere>
-      <a-sphere scale=".011 .011 .011"></a-sphere>
+      <a-entity rotation="90 -45 0" position="-.035 .008 .034">
+        <a-cylinder rotaion="90 -45 0" scale=".01 .06 .01" color="#73726D"></a-cylinder>
+        <a-sphere scale=".011 .011 .011" color="#73726D" position="0 .033 0"></a-sphere>
+        <a-sphere scale=".011 .011 .011" color="#73726D" position="0 -.033 0"></a-sphere>
+      </a-entity>
     </a-entity>
 
     <a-entity visible="false" id="covid-mode-scene">
