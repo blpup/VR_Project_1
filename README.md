@@ -327,6 +327,13 @@ AFRAME.registerComponent('moveable-check', {
 <a-gltf-model position="4.641 0.050 8.280" scale=".02 .02 .02" rotation="0 90 0" src="#box" moveable-check id="moveablebox1" class="moveable"></a-gltf-model>
 ```
 
+#### Moveable Spray bottle + Covid Mode game
+When covid mode is active a spray bottle will appear. If you pick up the spray bottle you can removed covid particles from the air.
+Spray Base: <br/>
+![Spray Base](./ReadMeAssets/covidonNew.JPG)<br/>
+Spray Active: <br/>
+![Spray Active](./ReadMeAssets/covidongame.JPG)<br/>
+
 #### COVID-19 Mode
 
 The button labeled covid mode will toggle covid mode on and off.
@@ -341,7 +348,9 @@ Button Active: <br/>
 COVD-19 Mode OFF: <br/>
 ![COVD-19 Mode OFF](./ReadMeAssets/covidoff.JPG)<br/>
 COVD-19 Mode ON: <br/>
-![COVD-19 Mode ON](./ReadMeAssets/covidon.JPG)<br/>
+![COVD-19 Mode ON](./ReadMeAssets/covidonNew.JPG)<br/>
+COVD-19 Mode Game: <br/>
+![COVD-19 Mode ON](./ReadMeAssets/covidongame.JPG)<br/>
 ```
 AFRAME.registerComponent('collider-check', {
   init: async function() {
@@ -398,35 +407,74 @@ AFRAME.registerComponent('collider-check', {
     <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
   </a-entity>
 
-  <a-entity position="7.664 1.229 0.234" rotation="90 0 180">
-    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
-    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
-    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
+  <a-entity class="covid-ball" destory-covid position=" .170 1.092 0">
+    <a-sphere scale=".03 .03 .03" color="#B2AFAF" destory-covid class="covid-core"></a-sphere>
+    <a-entity position="0 .0 0" rotation="90 90 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
+    <a-entity position="0 .0 0" rotation="90 0 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
+    <a-entity position="0 .0 0" rotation="0 90 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
+    <a-entity position="0 .0 0" rotation="180 180 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
+    <a-entity position="0 .0 0" rotation="180 0 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
+    <a-entity position="0 .0 0" rotation="0 180 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
+    <a-entity position="0 .0 0" rotation="270 270 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
+    <a-entity position="0 .0 0" rotation="270 0 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
+    <a-entity position="0 .0 0" rotation="0 270 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
+    <a-entity position="0 .0 0" rotation="145 145 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
+    <a-entity position="0 .0 0" rotation="145 0 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
+    <a-entity position="0 .0 0" rotation="270 45 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
+    <a-entity position="0 .0 0" rotation="270 30 0">
+      <a-cylinder scale=".005 .1 .005" color="#7D1717"></a-cylinder>
+      <a-sphere scale=".01 .01 .01" position="0 .052 0" color="#7D1717"></a-sphere>
+      <a-sphere scale=".01 .01 .01" position="0 -.052 0" color="#7D1717"></a-sphere>
+    </a-entity>
   </a-entity>
-
-  <a-entity position="-9.121 .06 3.568" rotation="90 0 45">
-    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
-    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
-    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
-  </a-entity>
-
-  <a-entity position="3.110 .06 9.234" rotation="90 0 0">
-    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 0"></a-box>
-    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.095" rotation="00 0 45"></a-box>
-    <a-box src="#pizzaboxsprite" scale="1 1 .1" position="0 0 -.201"></a-box>
-  </a-entity>
-  <a-entity position="-9.927 1.561 -7.540">
-    <a-box src="#cautiontape" rotation="45 0 90" scale="3 .3 .2"></a-box>
-    <a-box src="#cautiontape" rotation="-45 0 90" scale="3 .3 .2"></a-box>
-  </a-entity>
-
-
-  <a-gltf-model position="-9.279 .075 -9.600" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
-  <a-gltf-model position="-9.279 .808 -9.600" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
-  <a-gltf-model position="-9.279 .075 -8.858" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
-  <a-gltf-model position="-8.544 .075 -9.6" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
-  <a-gltf-model position="-9.279 .808 -8.858" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
-  <a-gltf-model position="-7.802 .075 -9.594" scale=".02 .02 .02" rotation="0 90 0" src="#box"></a-gltf-model>
 </a-entity>
 ```
 ## Sources
@@ -446,7 +494,7 @@ AFRAME.registerComponent('collider-check', {
 * Bookshelf - https://sketchfab.com/3d-models/bookshelf-b8f46cf7daca419a87ac8d131bad056f
 * Plant - https://sketchfab.com/3d-models/indoor-pot-plant-3-8ad9b497549f42d4b8fa798828d6ec1e
 * Truck - https://sketchfab.com/3d-models/dumptruck-qCWXrNLMlMOEtD5rcS0zOKbdkbB
-* Controller - https://sketchfab.com/models/961d6215e3624c6eb861970acc953592
+* Spray Bottle - https://sketchfab.com/models/1611833f3eaa41bbba2b6944269429ab
 * Japanese Lamp - https://sketchfab.com/models/e816f01aa14b4af99a582b4d6a8cbdd0
 * Window - https://sketchfab.com/models/ce64c54fc8fb443c8135ac2caa2e9243
 * Box - https://sketchfab.com/models/0641e66ea33c415694cf84f786178960
@@ -457,7 +505,9 @@ AFRAME.registerComponent('collider-check', {
 * Chair
 * Sofa
 * Lamp
+* Truck Controller
 * Door
+* Covid Ball
 * Color Board Buttons
 * Covid Mode Button
 
