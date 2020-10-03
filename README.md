@@ -500,7 +500,7 @@ AFRAME.registerComponent('collider-check', {
 * Box - https://sketchfab.com/models/0641e66ea33c415694cf84f786178960
 
 
-7 Unique Custom made models were used in building this project.
+9 Unique Custom made models were used in building this project.
 * Table
 * Chair
 * Sofa
