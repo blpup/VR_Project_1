@@ -3,7 +3,7 @@
 ## My home
 
 ### Video
-[![Main Screenshot and video](./ReadMeAssets/main.jpg)](https://youtu.be/nHF2N1Vu8Pc)
+[![Main Screenshot and video](./ReadMeAssets/main.jpg)](https://youtu.be/hmeJKjinWTw)
 
 ### Instruction Panel
 
